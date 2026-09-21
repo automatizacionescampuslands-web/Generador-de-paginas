@@ -1,534 +1,560 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Panadería Masa Madre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        /* RESET OBLIGATORIO - NO QUITAR */
-        *{box-sizing:border-box;margin:0;padding:0}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Web Jardín Infantil Semillitas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      /* Base System Colors */
+      --bg-0:#F2F3F5;--bg-1:#E9EBEF;--bg-2:#FFFFFF;--bg-deep:#E2E4E9;
+      --text-hi:#14161B;--text-mid:#3D4451;--text-lo:#6B7280;--text-faint:#9CA3AF;
+      --card-border:rgba(20,25,35,.10);--dot-confidential:#C98A00;--radius:14px;
 
-        /* TOKENS DE COLOR (ADAPTADOS PARA MASA MADRE) */
-        :root{
-            --bg-0:#F2F3F5;
-            --bg-1:#E9EBEF;
-            --bg-2:#FFFFFF;
-            --bg-deep:#E2E4E9;
+      /* Client Brand Colors - Naranja cálido y Verde manzana */
+      --cyan:#FF8C00; /* Warm Orange */
+      --blue:#FF7043; /* Slightly deeper Orange/Red */
+      --violet:#8BC34A; /* Apple Green */
+      --magenta:#689F38; /* Deeper Green */
+      
+      /* Gradient and Glows based on client brand colors */
+      --grad-brand:linear-gradient(100deg,var(--cyan) 0%,var(--blue) 38%,var(--violet) 72%,var(--magenta) 100%);
+      --bg-glow-a:rgba(255,140,0,.09);
+      --bg-glow-b:rgba(139,195,74,.09);
+      --bg-wash:linear-gradient(135deg,rgba(47,168,214,.06) 0%,rgba(47,111,224,.05) 32%,rgba(107,79,203,.05) 66%,rgba(154,63,201,.07) 100%); /* Kept original wash, as specific brand wash wasn't defined */
+      
+      /* Fonts */
+      --font-display:'Playfair Display',serif;
+      --font-body:'Poppins',sans-serif;
+      --font-label:'Montserrat',sans-serif;
+    }
+    body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body,'Poppins',sans-serif);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
+    .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
+    .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
+    .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
+    .wordmark{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
+    .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
+    .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
+    .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
+    .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
+    .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+    .slide.active{display:block;opacity:1;transform:translateY(0)}
+    .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+    .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .control-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+    .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
+    #slide-number-display{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
+    .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
+    .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
+    .s-body{overflow:hidden}
+    .cover-body,.cover__body{overflow:hidden}
+    svg{display:block}
+    .icon-sm,.icon-md{flex:none}
+    .icon-sm{width:22px;height:22px}
+    .icon-md{width:36px;height:36px}
 
-            /* COLORES DE ACENTO ADAPTADOS A "COLORES TIERRA" */
-            --cyan:#A67C5B; /* Marrón/oro suave */
-            --blue:#C09A61; /* Oro más vibrante */
-            --violet:#7B4F37; /* Marrón oscuro */
-            --magenta:#A67C5B; /* Reutilizado para gradiente */
-            
-            --grad-brand:linear-gradient(100deg,var(--cyan) 0%,var(--blue) 38%,var(--violet) 72%,var(--magenta) 100%);
-            --bg-glow-a:rgba(166,124,91,.09); /* Basado en --cyan */
-            --bg-glow-b:rgba(192,154,97,.09);  /* Basado en --blue */
+    /* General Slide Elements */
+    .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
+    .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
+    .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
+    .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
 
-            --bg-wash:linear-gradient(135deg,rgba(47,168,214,.06) 0%,rgba(47,111,224,.05) 32%,rgba(107,79,203,.05) 66%,rgba(154,63,201,.07) 100%);
-            /* bg-wash original, pero los glows son personalizados */
+    .slide-inner.internal{padding:38px 54px 20px;}
+    .slide-inner.internal.glow-a{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+    .slide-inner.internal.glow-b{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-b) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-a) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
 
-            --text-hi:#14161B;
-            --text-mid:#3D4451;
-            --text-lo:#6B7280;
-            --text-faint:#9CA3AF;
-            --card-border:rgba(20,25,35,.10);
-            --dot-confidential:#C98A00;
-            --radius:14px;
+    .s-header{display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:28px;}
+    .s-header .wordmark{font-size:12px;color:var(--text-lo);font-weight:600;}
+    .s-header .client-name{font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--text-mid)}
+    .s-body{display:flex;flex-direction:column;gap:24px;overflow:hidden;min-height:0;flex:1;}
+    .s-footer{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:24px;}
+    .s-footer .wordmark{font-size:10px;color:var(--text-lo);font-weight:500;letter-spacing:.04em;}
+    .s-footer .quote-title{font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.08em;color:var(--text-faint)}
+    .s-footer .page-number{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--blue)}
 
-            /* FUENTES */
-            --font-display:'Playfair Display',serif;
-            --font-body:'Poppins',sans-serif;
-            --font-label:'Montserrat',sans-serif;
-        }
+    .eyebrow{font-family:var(--font-label);font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);margin-bottom:14px}
+    .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;color:var(--text-hi);margin-bottom:10px;}
+    .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:19px;line-height:1.5;color:var(--text-mid);max-width:80%;}
+    .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 
-        /* CSS DEL SHELL - NO MODIFICAR ESTRUCTURA */
-        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body,'Poppins',sans-serif);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
-        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
-        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
-        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
-        .wordmark{font-family:var(--font-label,'Montserrat',sans-serif);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label,'Montserrat',sans-serif);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
-        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
-        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
-        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
-        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-        .slide.active{display:block;opacity:1;transform:translateY(0)}
-        .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-        .slide-inner.glow-a{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-        .slide-inner.glow-b{background:radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-        .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-        .control-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-        .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
-        #slide-number-display{font-family:var(--font-label,'Montserrat',sans-serif);font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
-        .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
-        .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
-        .s-body{overflow:hidden}
-        .cover-body,.cover__body{overflow:hidden}
-        svg{display:block}
-        .icon-sm,.icon-md{flex:none}
-        .icon-sm{width:22px;height:22px}
-        .icon-md{width:36px;height:36px}
+    /* Cover Specific Styles */
+    .cover .eyebrow{color:var(--text-mid);font-size:14px;letter-spacing:.28em}
+    .cover .s-title{font-size:62px;font-weight:900;margin-bottom:10px;max-width:80%;line-height:1.15;}
+    .cover .s-subtitle{font-size:23px;color:var(--text-mid);font-weight:300;max-width:70%;line-height:1.4;}
+    .cover__meta-item{display:flex;flex-direction:column;gap:4px;}
+    .cover__meta-label{font-family:var(--font-label);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+    .cover__meta-value{font-family:var(--font-body);font-weight:500;font-size:16px;color:var(--text-mid)}
 
-        /* PATRONES DE CONTENIDO REUTILIZABLES */
-        .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
-        .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
-        .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
-        .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
-        .cover__meta-item p:first-child{font-family:var(--font-label);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-lo);margin-bottom:4px}
-        .cover__meta-item p:last-child{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-mid)}
+    /* Content Patterns */
+    .grid-2-col, .grid-3-col {display:grid;gap:24px;}
+    .grid-2-col {grid-template-columns:1fr 1fr;}
+    .grid-3-col {grid-template-columns:1fr 1fr 1fr;}
+    .grid-cards-2x2 {display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:20px;}
 
-        .slide-inner.internal{display:grid;grid-template-rows:38px 1fr 20px;padding:34px 54px 28px}
-        .s-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-        .s-header .wordmark.client{color:var(--text-mid)}
-        .s-footer{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.1em;color:var(--text-lo);text-transform:uppercase}
-        .s-footer .page-number{color:var(--blue);font-weight:700}
+    .content-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;}
+    .content-card.top-gradient{border-top:3px solid transparent;border-image:var(--grad-brand) 1;}
+    .content-card h3{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--text-hi);margin-bottom:8px;line-height:1.3;}
+    .content-card p, .content-card ul{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text-mid);}
+    .content-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;padding-left:0;}
+    .content-card li{display:flex;align-items:flex-start;gap:12px;}
+    .content-card li svg{flex-shrink:0;margin-top:2px;color:var(--blue);}
+    .content-card li span{font-size:16px;line-height:1.6;color:var(--text-mid);}
+    .content-card li strong{font-weight:600;color:var(--text-hi);}
 
-        .s-eyebrow{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-        .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;color:var(--text-hi);margin-bottom:12px}
-        .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:18px;line-height:1.4;color:var(--text-mid);margin-bottom:30px}
+    .split-col-layout{display:flex;gap:40px;height:100%;}
+    .split-col-layout > div{flex:1;}
+    .split-col-layout .left-col{display:flex;flex-direction:column;justify-content:center;gap:16px;}
+    .split-col-layout .right-col{display:flex;flex-direction:column;gap:16px;justify-content:center;}
+    .split-col-layout .divider{width:1px;background:var(--card-border);}
 
-        .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+    .bullet-list{list-style:none;display:flex;flex-direction:column;gap:16px;padding-left:0;}
+    .bullet-list li{display:flex;align-items:flex-start;gap:12px;font-family:var(--font-body);font-size:17px;line-height:1.6;color:var(--text-mid);}
+    .bullet-list li svg{flex-shrink:0;margin-top:3px;color:var(--blue);}
+    .bullet-list li strong{font-weight:600;color:var(--text-hi);}
+    .bullet-list.compact li{gap:8px;font-size:16px;line-height:1.5;}
+    .bullet-list.compact li svg{width:18px;height:18px;}
 
-        /* CONTENIDO ESPECÍFICO DE LÁMINAS */
-        .content-block{display:flex;flex-direction:column;gap:20px}
-        .text-center{text-align:center}
+    .feature-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px;}
+    .feature-card .card-number{font-family:var(--font-label);font-weight:700;font-size:22px;color:var(--text-faint);opacity:.6;}
+    .feature-card h4{font-family:var(--font-label);font-weight:700;font-size:17px;color:var(--text-hi);line-height:1.3;}
+    .feature-card p{font-family:var(--font-body);font-size:15px;line-height:1.5;color:var(--text-mid);}
 
-        .hero-title{font-family:var(--font-display);font-weight:900;font-size:56px;line-height:1.1;color:var(--text-hi)}
-        .hero-subtitle{font-family:var(--font-body);font-weight:400;font-size:22px;line-height:1.4;color:var(--text-mid);max-width:700px}
-        .slide-01 .cover__body .s-eyebrow{margin-bottom:10px}
-        .slide-01 .cover__body .hero-title{margin-bottom:12px}
-        .slide-01 .cover__body .hero-subtitle{margin-bottom:30px}
-        .slide-01 .cover__body .hero-for{font-family:var(--font-body);font-weight:600;font-size:20px;color:var(--text-hi)}
+    .two-big-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;}
+    .two-big-cards .big-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:18px;}
+    .two-big-cards .big-card h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--text-hi);line-height:1.2;margin-bottom:10px;}
+    .two-big-cards .big-card ul{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:12px;}
+    .two-big-cards .big-card li{display:flex;align-items:flex-start;gap:12px;font-family:var(--font-body);font-size:17px;line-height:1.6;color:var(--text-mid);}
+    .two-big-cards .big-card li svg{flex-shrink:0;margin-top:3px;color:var(--violet);}
+    .two-big-cards .big-card li strong{font-weight:600;color:var(--text-hi);}
 
-        /* General content body styling */
-        .s-body{display:flex;flex-direction:column;gap:24px;min-height:0;padding-bottom:20px;} /* padding-bottom to ensure space above footer */
+    .color-swatch-grid{display:grid;grid-template-columns:auto 1fr;gap:12px 20px;align-items:center;}
+    .color-swatch{width:48px;height:48px;border-radius:8px;border:1px solid rgba(0,0,0,.1);}
+    .color-info strong{font-family:var(--font-label);font-weight:700;font-size:15px;color:var(--text-hi);}
+    .color-info span{font-family:var(--font-body);font-size:14px;color:var(--text-mid);}
 
-        /* Lists */
-        .bullet-list{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:16px;font-family:var(--font-body);font-size:17px;color:var(--text-mid)}
-        .bullet-list li{display:flex;align-items:flex-start;gap:12px}
-        .bullet-list li svg{margin-top:2px;color:var(--blue)} /* Adjust icon vertical alignment */
-        .bullet-list li strong{font-weight:600;color:var(--text-hi)}
-        .bullet-list li span{line-height:1.4}
+    .contact-card-v2{background:var(--bg-2);border-left:5px solid var(--violet);border-radius:0 var(--radius) var(--radius) 0;padding:28px;display:flex;flex-direction:column;gap:14px;}
+    .contact-card-v2 h3{font-family:var(--font-label);font-weight:700;font-size:22px;color:var(--text-hi);margin-bottom:4px;}
+    .contact-card-v2 p{font-family:var(--font-body);font-size:16px;line-height:1.5;color:var(--text-mid);}
+    .contact-card-v2 .contact-item{display:flex;align-items:center;gap:12px;}
+    .contact-card-v2 .contact-item svg{color:var(--blue);}
+    .contact-card-v2 .contact-item span{font-family:var(--font-body);font-size:16px;color:var(--text-mid);}
+    .contact-card-v2 .contact-item strong{font-weight:600;color:var(--text-hi);}
+    .cta-text{font-family:var(--font-label);font-weight:600;font-size:14px;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-top:16px;}
 
-        /* Cards grid */
-        .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:20px}
-        .card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px}
-        .card .card-icon{color:var(--blue);margin-bottom:8px}
-        .card .card-title{font-family:var(--font-body);font-weight:600;font-size:19px;color:var(--text-hi)}
-        .card .card-description{font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--text-mid);line-height:1.5}
-        .card.feature-card{padding:28px}
-        .feature-card .card-number{font-family:var(--font-label);font-weight:700;font-size:30px;color:var(--blue);opacity:.2;line-height:1;margin-bottom:8px}
-        .feature-card .card-title{font-size:22px;margin-bottom:6px;color:var(--blue)} /* Make title more prominent */
-        .feature-card .card-description{font-size:17px}
+    .steps-column{display:flex;flex-direction:column;gap:20px;position:relative;}
+    .steps-column .step{display:flex;align-items:flex-start;gap:16px;position:relative;padding-left:10px;}
+    .steps-column .step::before{content:attr(data-step);display:flex;justify-content:center;align-items:center;width:32px;height:32px;border-radius:50%;background:var(--blue);color:white;font-family:var(--font-label);font-weight:700;font-size:14px;flex-shrink:0;position:relative;z-index:1;}
+    .steps-column .step:not(:last-child)::after{content:'';position:absolute;left:calc(10px + 16px);top:32px;bottom:-10px;width:2px;background:var(--card-border);z-index:0;}
+    .steps-column .step-content{display:flex;flex-direction:column;gap:4px;}
+    .steps-column .step-content strong{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--text-hi);}
+    .steps-column .step-content p{font-family:var(--font-body);font-size:16px;line-height:1.5;color:var(--text-mid);}
 
-        /* Two column split */
-        .two-column-split{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:20px}
-        .column-content{display:flex;flex-direction:column;gap:20px}
-        .column-content .col-title{font-family:var(--font-body);font-weight:600;font-size:24px;color:var(--text-hi);margin-bottom:10px}
-        .column-content .col-text{font-family:var(--font-body);font-weight:400;font-size:17px;color:var(--text-mid);line-height:1.6}
+    .simple-text-block{font-family:var(--font-body);font-size:17px;line-height:1.7;color:var(--text-mid);}
+    .simple-text-block strong{font-weight:600;color:var(--text-hi);}
 
-        /* Contact card for closure */
-        .contact-card{background:var(--bg-2);border:1px solid var(--card-border);border-left:5px solid var(--blue);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:14px;align-self:stretch}
-        .contact-card .contact-name{font-family:var(--font-body);font-weight:600;font-size:22px;color:var(--text-hi)}
-        .contact-card .contact-role{font-family:var(--font-body);font-weight:500;font-size:16px;color:var(--text-mid)}
-        .contact-card .contact-detail{display:flex;align-items:center;gap:12px;font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--text-mid)}
-        .contact-card .contact-detail strong{font-weight:600;color:var(--text-hi)}
-        .contact-card .contact-detail svg{color:var(--blue)}
-        .contact-cta{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:var(--grad-brand);color:#fff;font-family:var(--font-label);font-weight:700;font-size:14px;letter-spacing:.05em;border-radius:8px;text-decoration:none;margin-top:10px}
-
-        /* Closure layout */
-        .closure-layout{display:grid;grid-template-columns:1fr 0.8fr;gap:40px;align-items:start}
-        .steps-column{display:flex;flex-direction:column;gap:20px}
-        .step-item{display:flex;align-items:flex-start;gap:16px;position:relative;padding-left:10px}
-        .step-item .step-number{font-family:var(--font-label);font-weight:700;font-size:22px;color:var(--blue);line-height:1}
-        .step-item .step-content{display:flex;flex-direction:column;gap:4px}
-        .step-item .step-title{font-family:var(--font-body);font-weight:600;font-size:18px;color:var(--text-hi)}
-        .step-item .step-description{font-family:var(--font-body);font-weight:400;font-size:15px;color:var(--text-mid);line-height:1.4}
-        .step-item:not(:last-child)::before{content:'';position:absolute;left:20px;top:30px;bottom:-20px;width:2px;background:var(--card-border)} /* Vertical connector */
-
-    </style>
+  </style>
 </head>
 <body>
-    <header class="app-header">
-        <div class="header-left">
-            <span class="wordmark">Campuslands Full Service</span>
-        </div>
-        <div class="header-center"></div>
-        <div class="header-right">
-            <span class="badge-confidential">Confidencial</span>
-        </div>
-    </header>
+  <header class="app-header">
+    <div class="header-left"><span class="wordmark">Campuslands Full Service</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"><span class="badge-confidential">Confidencial</span></div>
+  </header>
+  <main class="app-content">
+    <section class="slides-viewport">
+      <div class="slides-container" id="slides-container">
 
-    <main class="app-content">
-        <section class="slides-viewport">
-            <div class="slides-container" id="slides-container">
-
-                <!-- Slide 1: Portada -->
-                <div class="slide active" data-slide="1">
-                    <div class="slide-inner cover">
-                        <div class="cover__topbar">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="badge-confidential">Confidencial</span>
-                        </div>
-                        <div class="cover__body">
-                            <p class="s-eyebrow">PROPUESTA COMERCIAL</p>
-                            <h1 class="hero-title">Una <span class="gt">Experiencia Digital</span> para Panadería Masa Madre</h1>
-                            <p class="hero-subtitle">Lleva el sabor artesanal y la tradición de la masa madre al mundo digital, conectando con tus clientes de una forma única.</p>
-                            <p class="hero-for">PARA VALENTINA ROJAS ARIAS</p>
-                        </div>
-                        <div class="cover__meta">
-                            <div class="cover__meta-item">
-                                <p>Preparado para</p>
-                                <p>Panadería Masa Madre</p>
-                            </div>
-                            <div class="cover__meta-item">
-                                <p>Preparado por</p>
-                                <p>Campuslands Full Service</p>
-                            </div>
-                            <div class="cover__meta-item">
-                                <p>Fecha</p>
-                                <p>25 de septiembre de 2026</p>
-                            </div>
-                            <div class="cover__meta-item">
-                                <p>Versión</p>
-                                <p>1.0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 2: Diagnóstico/Línea base -->
-                <div class="slide" data-slide="2">
-                    <div class="slide-inner internal glow-a">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">01 · DIAGNÓSTICO ACTUAL</p>
-                            <h2 class="s-title">Desafíos en la <span class="gt">Gestión y Visibilidad</span> de Masa Madre</h2>
-                            <p class="s-subtitle">Hemos identificado los puntos clave que actualmente limitan el crecimiento y la eficiencia operativa de tu negocio.</p>
-                            <ul class="bullet-list">
-                                <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Pedidos Perdidos</strong>: La gestión de pedidos para eventos por redes sociales y WhatsApp es desordenada, resultando en la pérdida de oportunidades importantes.</span></li>
-                                <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Información Desactualizada</strong>: Los clientes desconocen los productos horneados cada día, llegando a menudo cuando sus favoritos ya se han agotado.</span></li>
-                                <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Falta de Identidad Digital</strong>: No existe un espacio donde se narre la historia única y el proceso de la masa madre, un diferenciador clave de tu panadería.</span></li>
-                                <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Barrera para Suscripciones</strong>: La implementación de un modelo de suscripción semanal no es posible con las herramientas actuales de cobro y organización.</span></li>
-                            </ul>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">01</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: La Solución / Arquitectura -->
-                <div class="slide" data-slide="3">
-                    <div class="slide-inner internal glow-b">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">02 · NUESTRA PROPUESTA</p>
-                            <h2 class="s-title">Una <span class="gt">Plataforma Digital</span> que Conecta con tus Clientes</h2>
-                            <p class="s-subtitle">Diseñamos una solución integral que centraliza tu operación, potencia tu identidad y deleita a tus clientes.</p>
-                            <div class="cards-grid">
-                                <div class="card">
-                                    <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                                    <p class="card-title">Visibilidad & Producto</p>
-                                    <p class="card-description">Un menú interactivo con la guía de horneado diario para que tus clientes siempre sepan qué esperar.</p>
-                                </div>
-                                <div class="card">
-                                    <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                    <p class="card-title">Eficiencia en Pedidos</p>
-                                    <p class="card-description">Un formulario de pedidos para eventos que organiza y centraliza toda la información, evitando pérdidas.</p>
-                                </div>
-                                <div class="card">
-                                    <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                    <p class="card-title">Identidad & Comunidad</p>
-                                    <p class="card-description">Un espacio dedicado a la historia de tu masa madre y la introducción a futuros planes de suscripción.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">02</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 4: Módulos/Alcance - Parte 1 -->
-                <div class="slide" data-slide="4">
-                    <div class="slide-inner internal glow-a">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">03 · MÓDULOS DE SOLUCIÓN</p>
-                            <h2 class="s-title">Impulsa tu <span class="gt">Negocio Artesanal</span></h2>
-                            <p class="s-subtitle">Cada funcionalidad está pensada para destacar la calidad de tus productos y mejorar la interacción con tus clientes.</p>
-                            <div class="cards-grid">
-                                <div class="card feature-card">
-                                    <p class="card-number">01</p>
-                                    <p class="card-title">Menú y Horario Diario</p>
-                                    <p class="card-description">Una sección clara y atractiva para que los clientes consulten el menú completo, precios y la disponibilidad diaria de los productos, eliminando la incertidumbre.</p>
-                                </div>
-                                <div class="card feature-card">
-                                    <p class="card-number">02</p>
-                                    <p class="card-title">Formulario de Pedidos para Eventos</p>
-                                    <p class="card-description">Un sistema robusto para recibir pedidos de eventos con todos los detalles (fecha, cantidades, tipo de producto), garantizando que ningún mensaje se pierda.</p>
-                                </div>
-                                <div class="card feature-card">
-                                    <p class="card-number">03</p>
-                                    <p class="card-title">Nuestra Masa Madre: Historia y Proceso</p>
-                                    <p class="card-description">Una página dedicada a contar la historia de la panadería, el valor de la fermentación lenta y el proceso de 24 horas que da vida a tus panes artesanales.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">03</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 5: Módulos/Alcance - Parte 2 -->
-                <div class="slide" data-slide="5">
-                    <div class="slide-inner internal glow-b">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">04 · EXPANDIENDO CAPACIDADES</p>
-                            <h2 class="s-title">Potencial de <span class="gt">Crecimiento y Conexión</span></h2>
-                            <p class="s-subtitle">Preparamos el terreno para futuras oportunidades y mejoramos la accesibilidad de tu negocio.</p>
-                            <div class="two-column-split">
-                                <div class="card" style="gap:20px;">
-                                    <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                    <p class="card-title" style="font-size:20px;">Plan de Suscripción Semanal</p>
-                                    <p class="card-description">Información detallada sobre el plan de suscripción, explicando beneficios y funcionamiento. Se diseña para futuras integraciones de cobro.</p>
-                                    <ul class="bullet-list" style="margin-top:10px;font-size:15px;gap:10px;">
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Flexibilidad</strong>: Opciones de 2 o 3 panes a la semana, adaptándose a las preferencias del cliente.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Fidelización</strong>: Un modelo pensado para construir una comunidad de clientes recurrentes.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Preparación</strong>: Estructura lista para integrar pasarelas de pago en futuras fases.</span></li>
-                                    </ul>
-                                </div>
-                                <div class="card" style="gap:20px;">
-                                    <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    <p class="card-title" style="font-size:20px;">Información de Contacto y Ubicación</p>
-                                    <p class="card-description">Facilitamos el acceso a tu panadería con detalles claros de ubicación, horarios y un botón de WhatsApp directo.</p>
-                                    <ul class="bullet-list" style="margin-top:10px;font-size:15px;gap:10px;">
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Horarios claros</strong>: Lunes a Sábado de 7:00 am a 7:00 pm, Domingos de 8:00 am a 2:00 pm.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Mapa interactivo</strong>: Integración de la ubicación precisa de tu local en Bucaramanga.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Acceso directo</strong>: Botón de WhatsApp integrado para consultas rápidas y personalizadas.</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">04</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 6: Por qué Campuslands -->
-                <div class="slide" data-slide="6">
-                    <div class="slide-inner internal glow-a">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">05 · NUESTRO DIFERENCIAL</p>
-                            <h2 class="s-title">Tu <span class="gt">Visión Artesanal</span>, Nuestra Expertise Digital</h2>
-                            <p class="s-subtitle">Creamos experiencias web que resuenan con la esencia de tu marca y las expectativas de tus clientes.</p>
-                            <div class="two-column-split">
-                                <div class="column-content">
-                                    <p class="col-title">Diseño Cálido y "Antojable"</p>
-                                    <ul class="bullet-list" style="font-size:16px;">
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Estética Artesanal</strong>: Interfaz que evoca la calidez, la tradición y el cuidado de tus productos, muy lejos de una "cadena".</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Fotografía Protagonista</strong>: Implementación estratégica de fotos grandes y apetitosas de tus panes y pasteles, que invitan a la compra.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Identidad Consistente</strong>: Uso de la paleta de colores tierra y tipografías que reflejan la esencia auténtica de Masa Madre.</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column-content">
-                                    <p class="col-title">Soluciones a la Medida</p>
-                                    <ul class="bullet-list" style="font-size:16px;">
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Funcionalidad Específica</strong>: Desarrollo adaptado para tu menú diario, sistema de pedidos y sección "Nuestra Masa Madre".</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Escalabilidad Futura</strong>: La plataforma estará preparada para integrar módulos avanzados, como el cobro de suscripciones.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Enfoque Centrado en el Usuario</strong>: Experiencia intuitiva para tus clientes, desde la navegación hasta la realización de pedidos.</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">05</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 7: Inversión y Cronograma -->
-                <div class="slide" data-slide="7">
-                    <div class="slide-inner internal glow-b">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">06 · INVERSIÓN Y TIEMPOS</p>
-                            <h2 class="s-title">Una <span class="gt">Inversión Estratégica</span> para el Futuro Digital</h2>
-                            <p class="s-subtitle">Te ofrecemos claridad en los plazos y una base sólida para tu crecimiento y rentabilidad.</p>
-                            <div class="two-column-split">
-                                <div class="column-content">
-                                    <p class="col-title">Inversión Total</p>
-                                    <p class="col-text" style="font-size:24px; font-weight:600; color:var(--blue);">Valor por definir</p>
-                                    <ul class="bullet-list" style="font-size:16px; margin-top:10px">
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Modelo flexible</strong>: Trabajamos contigo para definir una propuesta que se adapte a tus necesidades y fases de implementación.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Retorno claro</strong>: Nuestro enfoque se centra en la eficiencia operativa y el aumento de ventas, con un retorno de inversión tangible.</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column-content">
-                                    <p class="col-title">Cronograma Estimado</p>
-                                    <p class="col-text" style="font-size:24px; font-weight:600; color:var(--blue);">3 semanas</p>
-                                    <ul class="bullet-list" style="font-size:16px; margin-top:10px">
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Fecha objetivo</strong>: Tu nueva plataforma estará lista para la temporada de fin de año, aprovechando el aumento de la demanda.</span></li>
-                                        <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Fases de implementación</strong>: Incluye diseño y aprobación, desarrollo, pruebas y control de calidad, y finalmente, el lanzamiento.</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">06</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 8: Cierre y Próximos Pasos -->
-                <div class="slide" data-slide="8">
-                    <div class="slide-inner internal glow-a">
-                        <div class="s-header">
-                            <span class="wordmark">Campuslands Full Service</span>
-                            <span class="wordmark client">Panadería Masa Madre</span>
-                        </div>
-                        <div class="s-body">
-                            <p class="s-eyebrow">07 · PRÓXIMOS PASOS</p>
-                            <h2 class="s-title">Construyamos Juntos la <span class="gt">Experiencia Masa Madre</span></h2>
-                            <p class="s-subtitle">Estamos listos para comenzar este delicioso proyecto que llevará tu panadería al siguiente nivel.</p>
-                            <div class="closure-layout">
-                                <div class="steps-column">
-                                    <div class="step-item">
-                                        <p class="step-number">01</p>
-                                        <div class="step-content">
-                                            <p class="step-title">Revisión y Aprobación</p>
-                                            <p class="step-description">Analiza esta propuesta y aclaremos cualquier duda que tengas para asegurar que estamos alineados.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step-item">
-                                        <p class="step-number">02</p>
-                                        <div class="step-content">
-                                            <p class="step-title">Inicio del Proyecto</p>
-                                            <p class="step-description">Una vez aprobada, nos pondremos en marcha con el diseño y desarrollo de tu nueva plataforma.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step-item">
-                                        <p class="step-number">03</p>
-                                        <div class="step-content">
-                                            <p class="step-title">Recopilación de Contenido</p>
-                                            <p class="step-description">Envíanos las fotos de tus productos y del proceso de masa madre para integrarlas al sitio.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step-item">
-                                        <p class="step-number">04</p>
-                                        <div class="step-content">
-                                            <p class="step-title">Lanzamiento Exitoso</p>
-                                            <p class="step-description">Tu nueva plataforma online estará lista para conectar con tus clientes y potenciar tus ventas.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="contact-card">
-                                    <p class="contact-name">Valentina Rojas Arias</p>
-                                    <p class="contact-role">Propietaria, Panadería Masa Madre</p>
-                                    <div class="contact-detail">
-                                        <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-7.4a13.33 13.33 0 0 0-.7-2.7 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                                        <span><strong>WhatsApp</strong>: 317 884 0263</span>
-                                    </div>
-                                    <div class="contact-detail">
-                                        <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                                        <span><strong>Correo</strong>: valentina@masamadre.co</span>
-                                    </div>
-                                    <a href="#" class="contact-cta">Contáctanos</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="s-footer">
-                            <span>Campuslands Full Service</span>
-                            <span>Cotización Panadería Masa Madre</span>
-                            <span class="page-number">07</span>
-                        </div>
-                    </div>
-                </div>
-
+        <!-- Slide 1: Portada -->
+        <div class="slide active" data-slide="1">
+          <div class="slide-inner cover">
+            <div class="cover__topbar">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="badge-confidential">Confidencial</span>
             </div>
-        </section>
-    </main>
-
-    <footer class="slides-footer-controls">
-        <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior">
-            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        </button>
-        <div class="slide-indicator">
-            <span id="slide-number-display">1 / 8</span>
-            <div class="progress-bar-bg">
-                <div id="slide-progress" class="progress-bar-fill"></div>
+            <div class="cover__body">
+              <span class="eyebrow">PROPUESTA DE VALOR</span>
+              <h1 class="s-title">Impulsando el <span class="gt">Futuro</span> de Semillitas</h1>
+              <p class="s-subtitle">Una presencia digital que conecta y tranquiliza a cada familia.</p>
+              <h2 class="s-title" style="margin-top:24px; font-size:48px;">PARA JARDÍN INFANTIL SEMILLITAS</h2>
             </div>
+            <div class="cover__meta">
+              <div class="cover__meta-item">
+                <span class="cover__meta-label">Preparado para</span>
+                <span class="cover__meta-value">Sandra Milena Quintero Gil, Directora</span>
+              </div>
+              <div class="cover__meta-item">
+                <span class="cover__meta-label">Preparado por</span>
+                <span class="cover__meta-value">Campuslands Full Service</span>
+              </div>
+              <div class="cover__meta-item">
+                <span class="cover__meta-label">Fecha</span>
+                <span class="cover__meta-value">20 de Mayo de 2024</span>
+              </div>
+              <div class="cover__meta-item">
+                <span class="cover__meta-label">Versión</span>
+                <span class="cover__meta-value">v1.0</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente">
-            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-    </footer>
 
-    <script>
-        // JS DEL SHELL - NO MODIFICAR
-        const state = { currentSlide: 1, totalSlides: 8 }; // N = Total de slides
-        function resizeSlideStage() {
-            const c = document.getElementById('slides-container');
-            if (!c) return;
-            const s = Math.min((c.clientWidth - 16) / 1056, (c.clientHeight - 16) / 594, 1.35);
-            document.documentElement.style.setProperty('--slide-scale', s.toFixed(4));
-        }
-        function updateSlideDisplay() {
-            document.querySelectorAll('.slide').forEach(sl => sl.classList.toggle('active', parseInt(sl.dataset.slide, 10) === state.currentSlide));
-            document.getElementById('slide-number-display').textContent = state.currentSlide + ' / ' + state.totalSlides;
-            document.getElementById('slide-progress').style.width = (state.currentSlide / state.totalSlides * 100) + '%';
-        }
-        function navigateSlide(d) {
-            state.currentSlide += d;
-            if (state.currentSlide > state.totalSlides) state.currentSlide = 1;
-            if (state.currentSlide < 1) state.currentSlide = state.totalSlides;
-            updateSlideDisplay();
-        }
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') navigateSlide(1);
-            if (e.key === 'ArrowLeft') navigateSlide(-1);
-        });
-        window.addEventListener('resize', resizeSlideStage);
-        window.addEventListener('DOMContentLoaded', () => { resizeSlideStage(); updateSlideDisplay(); });
-        window.addEventListener('load', () => { resizeSlideStage(); });
-    </script>
+        <!-- Slide 2: 01 · El Desafío Actual -->
+        <div class="slide" data-slide="2">
+          <div class="slide-inner internal glow-a">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body split-col-layout">
+              <div class="left-col">
+                <span class="eyebrow">01 · EL DESAFÍO ACTUAL</span>
+                <h2 class="s-title">Transformando las <span class="gt">Inquietudes</span> en Oportunidades</h2>
+                <p class="simple-text-block">En un entorno tan sensible como el educativo, la primera impresión y la capacidad de respuesta son clave. Jardín Infantil Semillitas enfrenta desafíos que limitan su crecimiento y la tranquilidad de los padres.</p>
+              </div>
+              <div class="divider"></div>
+              <div class="right-col">
+                <ul class="bullet-list">
+                  <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Consultas Repetitivas</strong>: Papás nuevos preguntan siempre lo mismo (valores, cupos, horarios, ruta) por WhatsApp.</span></li>
+                  <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Pérdida de Potenciales Clientes</strong>: Respuestas lentas o insuficientes resultan en familias que eligen otras opciones.</span></li>
+                  <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Brecha de Confianza</strong>: La seguridad y el cuidado, pilares de su servicio, no son visibles de inmediato para los nuevos interesados.</span></li>
+                  <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg><span><strong>Eficiencia en Matrículas</strong>: La gestión de inscripciones en temporada alta (Oct-Nov) podría ser más fluida y clara.</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">01 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: 02 · Nuestra Solución Estratégica -->
+        <div class="slide" data-slide="3">
+          <div class="slide-inner internal glow-b">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body">
+              <span class="eyebrow">02 · NUESTRA SOLUCIÓN ESTRATÉGICA</span>
+              <h2 class="s-title">Una Plataforma Digital que <span class="gt">Inspira</span> Confianza</h2>
+              <p class="s-subtitle">Diseñaremos un sitio web moderno, intuitivo y adaptado para el Jardín Infantil Semillitas, que servirá como su mejor carta de presentación y centro de información 24/7.</p>
+              <div class="grid-2-col" style="margin-top:20px;">
+                <div class="content-card top-gradient">
+                  <h3>Información Centralizada</h3>
+                  <p>Todos los datos esenciales que los padres necesitan, accesibles en cualquier momento y desde cualquier dispositivo.</p>
+                </div>
+                <div class="content-card top-gradient">
+                  <h3>Refuerzo de Confianza</h3>
+                  <p>Destacaremos sus protocolos de seguridad, personal calificado y minuta nutricional, proyectando tranquilidad.</p>
+                </div>
+                <div class="content-card top-gradient">
+                  <h3>Atención Continua</h3>
+                  <p>Reduciremos la carga de consultas repetitivas en WhatsApp, permitiendo que su equipo se enfoque en lo importante.</p>
+                </div>
+                <div class="content-card top-gradient">
+                  <h3>Promoción de la Matrícula</h3>
+                  <p>Con un llamado a la acción claro para visitas guiadas e información clave, impulsaremos las inscripciones de forma eficiente.</p>
+                </div>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">02 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: 03 · Módulos y Funcionalidades Clave -->
+        <div class="slide" data-slide="4">
+          <div class="slide-inner internal glow-a">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body">
+              <span class="eyebrow">03 · MÓDULOS Y FUNCIONALIDADES CLAVE</span>
+              <h2 class="s-title">Contenido que <span class="gt">Conecta</span> con Cada Familia</h2>
+              <p class="s-subtitle">Cada sección del sitio web está diseñada para ofrecer la información más relevante de manera clara y atractiva.</p>
+              <div class="grid-cards-2x2">
+                <div class="feature-card">
+                  <h4>Programas por Edad</h4>
+                  <p>Detalle de los enfoques pedagógicos y actividades para Caminadores, Párvulos, Pre-Jardín y Jardín.</p>
+                </div>
+                <div class="feature-card">
+                  <h4>Jornadas y Horarios</h4>
+                  <p>Información clara sobre jornada de mañana (7:30 am - 12:30 pm) y completa (hasta las 5:00 pm).</p>
+                </div>
+                <div class="feature-card">
+                  <h4>Ruta Escolar y Cobertura</h4>
+                  <p>Detalles del servicio, zonas de cobertura y cómo solicitarlo para comodidad de los padres.</p>
+                </div>
+                <div class="feature-card">
+                  <h4>Alimentación Saludable</h4>
+                  <p>Minuta semanal diseñada por nutricionista, resaltando el compromiso con el bienestar infantil.</p>
+                </div>
+                <div class="feature-card">
+                  <h4>Precios y Tarifas</h4>
+                  <p>Transparencia con matrícula, pensiones de jornada y costo de ruta escolar, visible para todos los interesados.</p>
+                </div>
+                <div class="feature-card">
+                  <h4>Agenda tu Visita</h4>
+                  <p>Formulario intuitivo para solicitar visitas guiadas a las instalaciones y resolver dudas en persona.</p>
+                </div>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">03 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: 04 · Resaltando Seguridad y Valores -->
+        <div class="slide" data-slide="5">
+          <div class="slide-inner internal glow-b">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body">
+              <span class="eyebrow">04 · RESALTANDO SEGURIDAD Y VALORES</span>
+              <h2 class="s-title">Un Entorno <span class="gt">Seguro</span> y Transparente</h2>
+              <p class="s-subtitle">Comunicar la seguridad y la claridad en los servicios es fundamental para generar confianza en los padres.</p>
+              <div class="two-big-cards">
+                <div class="big-card">
+                  <h3>Nuestro Compromiso con la Seguridad</h3>
+                  <ul>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Vigilancia Integral</strong>: Monitoreo con cámaras en áreas comunes para la tranquilidad de todos.</span></li>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Entrega Segura</strong>: Protocolos rigurosos de entrega y recogida de niños, garantizando su bienestar.</span></li>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Equipo Capacitado</strong>: Personal certificado en primeros auxilios y atención de emergencias.</span></li>
+                  </ul>
+                </div>
+                <div class="big-card">
+                  <h3>Claridad en Tarifas y Servicios</h3>
+                  <ul>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Matrícula Anual</strong>: $350.000 (valor inicial).</span></li>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Pensión Jornada Mañana</strong>: $480.000 mensuales.</span></li>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Pensión Jornada Completa</strong>: $690.000 mensuales.</span></li>
+                    <li><svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Ruta Escolar</strong>: Desde $120.000 mensuales, según la zona de cobertura.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">04 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6: 05 · Identidad Visual y Experiencia -->
+        <div class="slide" data-slide="6">
+          <div class="slide-inner internal glow-a">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body split-col-layout">
+              <div class="left-col" style="justify-content:flex-start; padding-top:20px;">
+                <span class="eyebrow">05 · IDENTIDAD VISUAL Y EXPERIENCIA</span>
+                <h2 class="s-title">Diseño que <span class="gt">Conecta</span> Emociones</h2>
+                <p class="s-subtitle">La página de Jardín Semillitas reflejará su esencia, combinando profesionalismo con la calidez necesaria para un espacio infantil, dirigido tanto a los niños como a sus padres.</p>
+                <p class="simple-text-block" style="margin-top:16px;">Nos guiaremos por la visión de un sitio web <strong style="color:var(--cyan);">alegre, tierno y confiable</strong>, que evite lo excesivamente infantil para conectar eficazmente con su público principal.</p>
+              </div>
+              <div class="divider"></div>
+              <div class="right-col" style="justify-content:flex-start; padding-top:20px;">
+                <h3 style="font-family:var(--font-label);font-weight:700;font-size:20px;color:var(--text-hi);margin-bottom:10px;">Colores Institucionales</h3>
+                <div class="color-swatch-grid">
+                  <div class="color-swatch" style="background-color: #FF8C00;"></div>
+                  <div class="color-info">
+                    <strong>Naranja Cálido</strong>
+                    <span>Utilizado para energía, calidez y alegría, presente en elementos clave.</span>
+                  </div>
+                  <div class="color-swatch" style="background-color: #8BC34A;"></div>
+                  <div class="color-info">
+                    <strong>Verde Manzana</strong>
+                    <span>Aporta frescura, naturaleza y crecimiento, complementando el tono naranja.</span>
+                  </div>
+                </div>
+                <p class="simple-text-block" style="margin-top:24px;">Estos tonos, presentes en su logo, se integrarán armoniosamente para crear una experiencia visual coherente y atractiva, transmitiendo los valores de Jardín Semillitas.</p>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">05 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 7: 06 · Cronograma Estimado -->
+        <div class="slide" data-slide="7">
+          <div class="slide-inner internal glow-b">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body split-col-layout">
+              <div class="left-col" style="justify-content:flex-start; padding-top:20px;">
+                <span class="eyebrow">06 · CRONOGRAMA ESTIMADO</span>
+                <h2 class="s-title">Hacia el Lanzamiento: <span class="gt">Nuestros Plazos</span></h2>
+                <p class="s-subtitle">Nuestro objetivo es entregar una solución digital funcional y atractiva en un tiempo óptimo, permitiendo que Jardín Semillitas aproveche el período clave de inscripciones.</p>
+                <p class="simple-text-block" style="margin-top:24px;">Para la inversión asociada a este proyecto, el equipo de Campuslands Full Service se pondrá en contacto para presentar una propuesta detallada y ajustada a sus necesidades específicas.</p>
+              </div>
+              <div class="divider"></div>
+              <div class="right-col" style="justify-content:flex-start; padding-top:20px;">
+                <h3 style="font-family:var(--font-label);font-weight:700;font-size:20px;color:var(--text-hi);margin-bottom:10px;">Cronograma de Ejecución</h3>
+                <ul class="bullet-list">
+                  <li><svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span><strong>Fase de Diseño y Desarrollo</strong>: Se estima un período de <strong style="color:var(--blue);">3 semanas</strong> desde la aprobación del proyecto hasta la entrega inicial para revisión.</span></li>
+                  <li><svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span><strong>Lanzamiento Estratégico</strong>: Completaremos el proyecto antes del inicio de las inscripciones de octubre, asegurando que su plataforma esté activa para captar nuevas familias.</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">06 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 8: 07 · Por Qué Campuslands -->
+        <div class="slide" data-slide="8">
+          <div class="slide-inner internal glow-a">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body">
+              <span class="eyebrow">07 · POR QUÉ CAMPUSLANDS</span>
+              <h2 class="s-title">Su Aliado Estratégico en la <span class="gt">Transformación</span> Digital</h2>
+              <p class="s-subtitle">En Campuslands Full Service, entendemos la importancia de una presencia digital que no solo informe, sino que también genere confianza y oportunidades.</p>
+              <div class="grid-2-col" style="margin-top:20px;">
+                <div class="content-card">
+                  <h3>Experiencia Comprobada</h3>
+                  <p>Más de 12 años desarrollando soluciones web que impactan positivamente en el sector educativo y de servicios.</p>
+                </div>
+                <div class="content-card">
+                  <h3>Diseño Intuitivo y Atractivo</h3>
+                  <p>Creamos plataformas que son fáciles de usar para los padres y visualmente atractivas para la marca del jardín.</p>
+                </div>
+                <div class="content-card">
+                  <h3>Enfoque en Resultados</h3>
+                  <p>Nuestras soluciones están diseñadas para resolver sus desafíos específicos, desde la eficiencia en la atención hasta el incremento de matrículas.</p>
+                </div>
+                <div class="content-card">
+                  <h3>Soporte y Evolución</h3>
+                  <p>Ofrecemos acompañamiento post-lanzamiento para asegurar el óptimo funcionamiento y evolución de su sitio.</p>
+                </div>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">07 / 08</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 9: 08 · Próximos Pasos y Contacto -->
+        <div class="slide" data-slide="9">
+          <div class="slide-inner internal glow-b">
+            <div class="s-header">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="client-name">JARDÍN INFANTIL SEMILLITAS</span>
+            </div>
+            <div class="s-body split-col-layout">
+              <div class="left-col" style="justify-content:flex-start; padding-top:20px; gap:24px;">
+                <span class="eyebrow">08 · PRÓXIMOS PASOS Y CONTACTO</span>
+                <h2 class="s-title">Impulsemos Juntos el <span class="gt">Futuro</span> de Semillitas</h2>
+                <div class="steps-column">
+                  <div class="step" data-step="01">
+                    <div class="step-content">
+                      <strong>Revisión y Feedback</strong>
+                      <p>Analice esta propuesta detallada y comparta sus comentarios con nosotros.</p>
+                    </div>
+                  </div>
+                  <div class="step" data-step="02">
+                    <div class="step-content">
+                      <strong>Sesión de Consultoría</strong>
+                      <p>Coordinemos una reunión para resolver dudas y ajustar cualquier detalle necesario.</p>
+                    </div>
+                  </div>
+                  <div class="step" data-step="03">
+                    <div class="step-content">
+                      <strong>Definición de la Inversión</strong>
+                      <p>Presentaremos una propuesta económica formal y personalizada para su proyecto.</p>
+                    </div>
+                  </div>
+                  <div class="step" data-step="04">
+                    <div class="step-content">
+                      <strong>Inicio del Proyecto</strong>
+                      <p>Tras su aprobación, ¡daremos vida a la nueva plataforma digital de Jardín Semillitas!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="right-col" style="justify-content:center;">
+                <div class="contact-card-v2">
+                  <h3>Contacto Clave</h3>
+                  <p>Para coordinar los siguientes pasos y resolver cualquier inquietud.</p>
+                  <div class="contact-item">
+                    <svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span><strong>Sandra Milena Quintero Gil</strong></span>
+                  </div>
+                  <div class="contact-item">
+                    <svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    <span>Directora</span>
+                  </div>
+                  <div class="contact-item">
+                    <svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.67-3.67A19.79 19.79 0 0 1 2 5.18 2 2 0 0 1 4.18 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span><strong>WhatsApp</strong>: 316 302 7745</span>
+                  </div>
+                  <div class="contact-item">
+                    <svg class="icon-sm" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span><strong>Correo</strong>: direccion@jardinsemillitas.edu.co</span>
+                  </div>
+                  <span class="cta-text">Contacte a su asesor de Campuslands Full Service para iniciar</span>
+                </div>
+              </div>
+            </div>
+            <div class="s-footer">
+              <span class="wordmark">Campuslands Full Service</span>
+              <span class="quote-title">Cotizacion Jardín Infantil Semillitas</span>
+              <span class="page-number">08 / 08</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <footer class="slides-footer-controls">
+    <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+    <div class="slide-indicator"><span id="slide-number-display">1 / N</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
+    <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+  </footer>
+
+  <script>
+    const state={currentSlide:1,totalSlides:8}; // Updated totalSlides to 8
+    function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
+    function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
+    function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
+    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
+    window.addEventListener('resize',resizeSlideStage);
+    window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();});
+    window.addEventListener('load',()=>{resizeSlideStage();});
+  </script>
 <script>
 (function(){
 function clSeguridadTextoSuelto(){
