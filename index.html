@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propuesta para Taller Motos Rendon</title>
+  <title>Propuesta para Óptica Visión Clara</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,18 +26,18 @@
       --dot-confidential:#800000; /* Rojo para confidencialidad */
       --radius:14px;
 
-      /* COLORES DE MARCA REMAPEADOS: Negro y Amarillo de Taller Motos Rendon */
-      --yellow-main: #FFC300; /* Amarillo vibrante */
-      --dark-accent: #202020; /* Gris muy oscuro, casi negro */
+      /* COLORES DE MARCA REMAPEADOS: Azul Petroleo y Dorado Suave de Optica Vision Clara */
+      --petroleo: #005F6B; /* Azul petroleo, profundizado para contraste */
+      --gold-soft: #D4AF37; /* Dorado suave */
 
-      --cyan: var(--yellow-main);
-      --blue: #FFAA00; /* Un amarillo más cálido para acento */
-      --violet: #404040; /* Gris oscuro medio */
-      --magenta: var(--dark-accent);
-      --grad-brand: linear-gradient(100deg, var(--yellow-main) 0%, var(--blue) 38%, var(--violet) 72%, var(--magenta) 100%);
-      --bg-glow-a: rgba(255, 195, 0, .09); /* Resplandor amarillo claro */
-      --bg-glow-b: rgba(32, 32, 32, .09); /* Resplandor oscuro claro */
-      --bg-wash: linear-gradient(135deg,rgba(var(--yellow-main),.06) 0%,rgba(var(--blue),.05) 32%,rgba(var(--violet),.05) 66%,rgba(var(--magenta),.07) 100%);
+      --cyan: #008C99; /* Tono más claro de petroleo */
+      --blue: var(--petroleo);
+      --violet: #A18831; /* Un dorado más oscuro/tostado para transiciones */
+      --magenta: var(--gold-soft);
+      --grad-brand: linear-gradient(100deg, var(--cyan) 0%, var(--blue) 38%, var(--violet) 72%, var(--magenta) 100%);
+      --bg-glow-a: rgba(0, 95, 107, .09); /* Resplandor petroleo claro */
+      --bg-glow-b: rgba(212, 175, 55, .09); /* Resplandor dorado claro */
+      --bg-wash: linear-gradient(135deg,rgba(0,140,153,.06) 0%,rgba(0,95,107,.05) 32%,rgba(161,136,49,.05) 66%,rgba(212,175,55,.07) 100%);
 
       /* Fuentes */
       --font-display:'Playfair Display',serif;
@@ -77,8 +77,8 @@
     #slide-number-display{font-family:var(--font-label);font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
     .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
     .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
-    .s-body{min-height:0;overflow:hidden} /* Adjusted from original to include min-height:0 */
-    .cover-body,.cover__body{min-height:0;overflow:hidden} /* Adjusted from original to include min-height:0 */
+    .s-body{min-height:0;overflow:hidden}
+    .cover-body,.cover__body{min-height:0;overflow:hidden}
     svg{display:block}
     .icon-sm,.icon-md{flex:none}
     .icon-sm{width:22px;height:22px}
@@ -169,6 +169,11 @@
     .icon-clock { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
     .icon-phone { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
     .icon-mail { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .icon-eye { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .icon-glasses { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .icon-contact-lenses { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .icon-user { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .icon-award { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
   </style>
 </head>
 <body>
@@ -195,14 +200,14 @@
             </div>
             <div class="cover__body">
               <div class="eyebrow">PROPUESTA DE SERVICIOS DIGITALES</div>
-              <h1 class="s-title" style="font-size:62px;">Taller Motos <span class="gt">Rendon</span></h1>
-              <p class="s-subtitle">Impulsando tu legado, atrayendo nuevos clientes.</p>
+              <h1 class="s-title" style="font-size:62px;">Óptica <span class="gt">Visión Clara</span></h1>
+              <p class="s-subtitle">Modernizando tu atención, optimizando tu operación.</p>
             </div>
             <div class="cover__meta">
               <div>
                 <div class="meta-label">Preparado para</div>
-                <div class="meta-value">Jhon Freddy Rendon Ortiz</div>
-                <div class="meta-value">Taller Motos Rendon</div>
+                <div class="meta-value">Martha Cecilia Villamizar Ortiz</div>
+                <div class="meta-value">Óptica Visión Clara</div>
               </div>
               <div>
                 <div class="meta-label">Preparado por</div>
@@ -225,23 +230,23 @@
           <div class="slide-inner internal glow-a">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
               <div class="eyebrow">01 · SITUACIÓN ACTUAL</div>
-              <h2 class="s-title">Desafíos de <span class="gt">visibilidad</span> y eficiencia</h2>
+              <h2 class="s-title">Desafíos en la <span class="gt">gestión</span> y comunicación</h2>
               <div class="content-block">
-                <h3>Conocimiento local, alcance limitado</h3>
-                <p>A pesar de 9 años de trayectoria en Girón, la dependencia del "boca a boca" limita la capacidad de Taller Motos Rendon para atraer nuevos clientes fuera de su círculo inmediato.</p>
-                <h3>Carga operativa por consultas repetitivas</h3>
-                <p>El alto volumen de preguntas recurrentes vía WhatsApp (sobre repuestos, precios y horarios) genera ineficiencias, desviando recursos valiosos de la atención en el taller.</p>
-                <h3>Servicios clave sin difusión adecuada</h3>
-                <p>Servicios especializados como la revisión pre-viaje, altamente relevante para la región de Norte de Santander, no están siendo comunicados eficazmente, perdiendo oportunidades de negocio.</p>
+                <h3>Agendamiento ineficiente y citas duplicadas</h3>
+                <p>La gestión manual de citas por WhatsApp y cuaderno físico genera solapamientos, sobrecarga administrativa y frustración para pacientes y personal.</p>
+                <h3>Información confusa sobre servicios y costos</h3>
+                <p>La falta de claridad en los precios y procesos de examen visual y compra de gafas causa malentendidos constantes con clientes nuevos.</p>
+                <h3>Catálogo de monturas y recordatorios ausentes</h3>
+                <p>No existe un escaparate digital para las monturas ni un sistema de recordatorios de control anual, lo que resulta en oportunidades de venta perdidas y baja retención de pacientes.</p>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">01 / 07</span>
             </div>
           </div>
@@ -252,123 +257,128 @@
           <div class="slide-inner internal glow-b">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
               <div class="eyebrow">02 · LA SOLUCIÓN</div>
-              <h2 class="s-title">Tu taller en línea: <span class="gt">Moderno</span> y al alcance de todos</h2>
+              <h2 class="s-title">Una plataforma <span class="gt">integral</span> para tu óptica</h2>
               <div class="split-layout" style="margin-top:20px;">
                 <div class="split-content">
-                  <h3>Una plataforma digital robusta</h3>
-                  <p>Diseñaremos una página web que refleje la solidez y experiencia de Taller Motos Rendon. Será tu vitrina digital para atraer nuevos clientes y optimizar la comunicación, posicionándote como referente en Girón.</p>
+                  <h3>Optimización y claridad digital</h3>
+                  <p>Diseñaremos una página web profesional que proyecte la confianza y calidez de Óptica Visión Clara, centralizando la información y mejorando la experiencia del cliente.</p>
                   <ul>
-                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Visibilidad 24/7</strong>: Tu taller disponible y visible en todo momento.</span></li>
-                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Información clara</strong>: Respuestas inmediatas a las preguntas más frecuentes de tus clientes.</span></li>
-                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Diferenciación</strong>: Destaca tus servicios especializados como la revisión pre-viaje.</span></li>
+                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Agendamiento simplificado</strong>: Un sistema en línea para gestionar citas sin cruces.</span></li>
+                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Transparencia total</strong>: Información clara sobre procesos, precios y beneficios.</span></li>
+                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Catálogo virtual</strong>: Exhibe tus monturas y lentes de contacto antes de la visita.</span></li>
                   </ul>
                 </div>
                 <div class="split-divider"></div>
                 <div class="split-content" style="gap:24px;">
                   <div class="card card-feature">
                     <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    <h4>Catálogo de Servicios</h4>
-                    <p>Detalle de cada servicio, precios transparentes y horarios de atención.</p>
+                    <h4>Procesos Claros</h4>
+                    <p>Detalle del proceso de examen visual, elección y entrega, eliminando confusiones.</p>
                   </div>
                   <div class="card card-feature">
-                    <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    <h4>Preguntas Frecuentes</h4>
-                    <p>Reducción de la carga de WhatsApp con respuestas automáticas.</p>
+                    <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <h4>Formulario de Citas</h4>
+                    <p>Herramienta online para que los pacientes agenden sus exámenes visuales.</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">02 / 07</span>
             </div>
           </div>
         </div>
 
-        <!-- SLIDE 4: Modulos/Alcance (Servicios) -->
+        <!-- SLIDE 4: Modulos/Alcance -->
         <div class="slide" data-slide="4">
           <div class="slide-inner internal glow-a">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
               <div class="eyebrow">03 · ALCANCE DEL PROYECTO</div>
-              <h2 class="s-title">Tu portafolio de <span class="gt">servicios</span> y productos</h2>
+              <h2 class="s-title">Funcionalidades clave para una <span class="gt">experiencia superior</span></h2>
               <div class="card-grid" style="margin-top:20px;">
                 <div class="card card-feature">
                   <span class="number">01</span>
-                  <h4>Mantenimiento General</h4>
-                  <p>Cambio de aceite y filtros, revisión de niveles, ajuste de cadena y puntos vitales.</p>
+                  <svg class="icon-md icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <h4>Proceso de Examen Visual</h4>
+                  <p>Explicación detallada del paso a paso, desde la llegada hasta la entrega de la fórmula.</p>
                 </div>
                 <div class="card card-feature">
                   <span class="number">02</span>
-                  <h4>Frenos y Suspensión</h4>
-                  <p>Revisión, ajuste o cambio de pastillas, discos y líquido. Optimización de la suspensión.</p>
+                  <svg class="icon-md icon-glasses" viewBox="0 0 24 24"><path d="M10 2L2 9.5l8 7.5L18 9.5z"/><path d="M16 2L8 9.5l8 7.5L24 9.5z"/><path d="M12 2v10.5"/></svg>
+                  <h4>Catálogo de Monturas</h4>
+                  <p>Galería por categorías para que los clientes exploren estilos antes de visitar el local.</p>
                 </div>
                 <div class="card card-feature">
                   <span class="number">03</span>
-                  <h4>Revisión Pre-Viaje</h4>
-                  <p>Chequeo completo de seguridad y rendimiento antes de trayectos largos. Esencial para rutas.</p>
+                  <svg class="icon-md icon-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <h4>Agendamiento de Citas</h4>
+                  <p>Formulario intuitivo para que los pacientes soliciten y programen su examen visual.</p>
                 </div>
                 <div class="card card-feature">
                   <span class="number">04</span>
-                  <h4>Venta de Repuestos</h4>
-                  <p>Catálogo de llantas, pastillas, aceites y accesorios de las mejores marcas.</p>
+                  <svg class="icon-md icon-contact-lenses" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4"/></svg>
+                  <h4>Información Lentes de Contacto</h4>
+                  <p>Detalles sobre tipos de lentes, adaptación y consejos esenciales para su cuidado.</p>
                 </div>
                 <div class="card card-feature">
                   <span class="number">05</span>
-                  <h4>Diagnóstico Eléctrico</h4>
-                  <p>Identificación y solución de fallas en el sistema eléctrico de tu motocicleta.</p>
+                  <svg class="icon-md icon-chat" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <h4>Botón Directo WhatsApp</h4>
+                  <p>Acceso rápido a consultas personalizadas, manteniendo la conexión directa con el cliente.</p>
                 </div>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">03 / 07</span>
             </div>
           </div>
         </div>
 
-        <!-- SLIDE 5: Como funciona / flujo de uso (Beneficios) -->
+        <!-- SLIDE 5: Como funciona / flujo de uso -->
         <div class="slide" data-slide="5">
           <div class="slide-inner internal glow-b">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
-              <div class="eyebrow">04 · CÓMO FUNCIONA</div>
-              <h2 class="s-title">De la consulta a la <span class="gt">acción</span></h2>
+              <div class="eyebrow">04 · FLUIDEZ DE USO</div>
+              <h2 class="s-title">De la necesidad a la <span class="gt">solución</span> en pocos clics</h2>
               <div class="flow-steps" style="margin-top:40px;">
                 <div class="flow-step">
                   <span class="step-number">01</span>
-                  <h4>Explorar Servicios</h4>
-                  <p>Clientes potenciales encuentran de manera intuitiva todo el catálogo de servicios, horarios y precios desde cualquier dispositivo.</p>
+                  <h4>Consulta Online</h4>
+                  <p>El paciente explora servicios, monturas y lentes de contacto desde la comodidad de su hogar.</p>
                 </div>
                 <div class="flow-arrow"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
                 <div class="flow-step">
                   <span class="step-number">02</span>
-                  <h4>Resolver Dudas</h4>
-                  <p>La información detallada y una sección de preguntas frecuentes reducen las consultas por WhatsApp, liberando al equipo para la mecánica.</p>
+                  <h4>Agenda o Pregunta</h4>
+                  <p>Utiliza el formulario de citas para agendar su examen o el botón de WhatsApp para una consulta rápida.</p>
                 </div>
                 <div class="flow-arrow"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
                 <div class="flow-step">
                   <span class="step-number">03</span>
-                  <h4>Conectar y Agendar</h4>
-                  <p>Con un formulario de contacto directo o un enlace a WhatsApp, convertir interesados en clientes es más sencillo y rápido.</p>
+                  <h4>Visita y Atención</h4>
+                  <p>Llega a la óptica con información clara, listo para una atención personalizada y eficiente.</p>
                 </div>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">04 / 07</span>
             </div>
           </div>
@@ -379,35 +389,35 @@
           <div class="slide-inner internal glow-a">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
               <div class="eyebrow">05 · POR QUÉ ELEGIRNOS</div>
-              <h2 class="s-title">Expertos en <span class="gt">soluciones</span> digitales para talleres</h2>
+              <h2 class="s-title">Experiencia y <span class="gt">confianza</span> en cada proyecto</h2>
               <div class="card-grid" style="margin-top:20px; grid-template-columns:1fr 1fr;">
                 <div class="card" style="padding:32px;">
-                  <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM12 16v-4M12 8h.01"/></svg>
-                  <h3>Experiencia Sectorial</h3>
-                  <p>Comprendemos las dinámicas y necesidades específicas de los talleres de motos, lo que nos permite ofrecer una solución altamente relevante y funcional.</p>
+                  <svg class="icon-md icon-user" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <h3>Enfoque Personalizado</h3>
+                  <p>Entendemos la importancia de la atención directa en una óptica. Diseñamos para complementar, no reemplazar, tu relación con el cliente.</p>
                   <ul>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Diseño funcional</strong>: Estética robusta que comunica confianza y profesionalismo.</span></li>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Optimización SEO</strong>: Desarrollamos tu sitio para que nuevos clientes te encuentren fácilmente en buscadores.</span></li>
+                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Interfaz intuitiva</strong>: Facilita el acceso a información clave para todos los rangos de edad.</span></li>
+                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Diseño a medida</strong>: Reflejamos la confianza y calidez de Óptica Visión Clara.</span></li>
                   </ul>
                 </div>
                 <div class="card" style="padding:32px;">
-                  <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  <h3>Soporte y Crecimiento</h3>
-                  <p>Nuestro compromiso va más allá de la entrega del proyecto. Te acompañamos en la evolución de tu plataforma para asegurar que crezca con tu negocio.</p>
+                  <svg class="icon-md icon-award" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                  <h3>Resultados Comprobados</h3>
+                  <p>Nuestra experiencia en soluciones digitales garantiza un proyecto exitoso que optimiza tu operación y atrae a tu público objetivo.</p>
                   <ul>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Entrega rápida</strong>: Tu presencia digital lista en un máximo de 3 semanas.</span></li>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Escalabilidad</strong>: Prepara tu taller para futuras expansiones y funcionalidades avanzadas.</span></li>
+                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Reducción de carga</strong>: Menos consultas repetitivas, más tiempo para la atención especializada.</span></li>
+                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Mayor alcance</strong>: Conecta con jóvenes y adultos mayores en Bucaramanga y el área metropolitana.</span></li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">05 / 07</span>
             </div>
           </div>
@@ -418,52 +428,49 @@
           <div class="slide-inner internal glow-b">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
               <div class="eyebrow">06 · INVERSIÓN Y CRONOGRAMA</div>
-              <h2 class="s-title">Una inversión en tu <span class="gt">futuro</span></h2>
+              <h2 class="s-title">Precios <span class="gt">transparentes</span> y plazos definidos</h2>
               <div class="split-layout" style="margin-top:20px; grid-template-columns:2fr 1px 1fr;">
                 <div class="split-content">
-                  <h3>Detalle de Servicios y Precios</h3>
-                  <p>Estos valores iniciales te dan una referencia clara de la inversión. Las cotizaciones específicas se ajustarán a tus necesidades.</p>
+                  <h3>Servicios y Costos de Referencia</h3>
+                  <p>Estos valores te orientan sobre nuestra estructura de precios, que se adaptará a las especificaciones finales de tu proyecto.</p>
                   <div class="price-list">
                     <div class="price-item">
-                      <span>Cambio de Aceite Normal</span>
+                      <span>Examen Visual Completo (30 min)</span>
                       <span>$45.000 COP</span>
                     </div>
                     <div class="price-item">
-                      <span>Cambio de Aceite Sintético</span>
-                      <span>$85.000 COP</span>
+                      <span>Examen Visual (con compra de gafas)</span>
+                      <span>Incluido sin costo</span>
                     </div>
                     <div class="price-item">
-                      <span>Revisión de Frenos (desde)</span>
-                      <span>$30.000 COP</span>
+                      <span>Montura Básica + Lentes Formulados (desde)</span>
+                      <span>$180.000 COP</span>
                     </div>
                     <div class="price-item">
-                      <span>Revisión Pre-Viaje Completa</span>
-                      <span>$60.000 COP</span>
-                    </div>
-                    <div class="price-item note">
-                        <span><strong>Nota sobre Repuestos</strong>: Los precios de repuestos varían significativamente según el tipo de pieza y la marca. Te ofreceremos la mejor opción en el momento de la consulta directa en taller.</span>
+                      <span>Lentes de Contacto (adaptación inicial) (desde)</span>
+                      <span>$90.000 COP</span>
                     </div>
                   </div>
                 </div>
                 <div class="split-divider"></div>
                 <div class="split-content">
-                  <h3>Cronograma Estimado</h3>
-                  <p>Comprometidos con la rapidez y la calidad, tu nueva presencia digital estará lista en:</p>
+                  <h3>Cronograma de Implementación</h3>
+                  <p>Trabajaremos con agilidad y dedicación para que tu plataforma esté lista en el siguiente plazo:</p>
                   <div class="card" style="padding:32px; text-align:center; background:var(--bg-deep);">
-                    <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    <h3 style="margin-bottom:0; font-size:38px; color:var(--blue);">3 Semanas</h3>
-                    <p style="margin-bottom:0;">Tiempo estimado para el desarrollo y lanzamiento de la página web.</p>
+                    <svg class="icon-md icon-clock" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <h3 style="margin-bottom:0; font-size:38px; color:var(--blue);">3 a 4 Semanas</h3>
+                    <p style="margin-bottom:0;">Tiempo estimado para el desarrollo y lanzamiento completo de tu sitio web.</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">06 / 07</span>
             </div>
           </div>
@@ -474,11 +481,11 @@
           <div class="slide-inner internal glow-a">
             <div class="s-header">
               <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Taller Motos Rendon</span>
+              <span class="wordmark">Óptica Visión Clara</span>
             </div>
             <div class="s-body">
               <div class="eyebrow">07 · PRÓXIMOS PASOS</div>
-              <h2 class="s-title">Construyamos juntos el <span class="gt">futuro</span> de tu taller</h2>
+              <h2 class="s-title">Impulsemos juntos la <span class="gt">transformación</span> de tu óptica</h2>
               <div class="split-layout" style="margin-top:20px;">
                 <div class="split-content">
                   <div class="vertical-steps">
@@ -493,7 +500,7 @@
                       <div class="step-circle">2</div>
                       <div>
                         <h4>Desarrollo y pruebas</h4>
-                        <p>Nuestro equipo comenzará el desarrollo de tu sitio web, manteniéndote informado del progreso y realizando pruebas exhaustivas.</p>
+                        <p>Nuestro equipo comenzará el desarrollo de tu sitio web, manteniéndote informada del progreso y realizando pruebas exhaustivas.</p>
                       </div>
                     </div>
                     <div class="v-step-item">
@@ -508,24 +515,24 @@
                 <div class="split-divider"></div>
                 <div class="split-content" style="align-items:center; justify-content:center;">
                   <div class="contact-card" style="width:100%; max-width:400px; text-align:center;">
-                    <h3 class="contact-title">¡Hablemos de tu proyecto!</h3>
-                    <p>Estamos listos para impulsar la visibilidad y eficiencia de Taller Motos Rendon. Contáctanos para dar el siguiente paso.</p>
+                    <h3 class="contact-title">¡Conversemos!</h3>
+                    <p>Estamos listos para modernizar Óptica Visión Clara y optimizar tu interacción con los pacientes. Contáctanos para empezar.</p>
                     <div class="contact-info">
                       <svg class="icon-phone" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                      <span>320 674 1198 (Jhon Freddy)</span>
+                      <span>312 509 6647 (Martha Cecilia)</span>
                     </div>
                     <div class="contact-info">
                       <svg class="icon-mail" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                      <span>tallermotosrendon@gmail.com</span>
+                      <span>martha@opticavisionclara.co</span>
                     </div>
-                    <a href="https://wa.me/573206741198" target="_blank" class="cta-btn">Contactar ahora</a>
+                    <a href="https://wa.me/573125096647" target="_blank" class="cta-btn">Contactar ahora</a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="s-footer">
               <span>Campuslands Full Service</span>
-              <span>Cotizacion Taller Motos Rendon</span>
+              <span>Cotizacion Optica Vision Clara</span>
               <span class="page-number">07 / 07</span>
             </div>
           </div>
