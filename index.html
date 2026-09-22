@@ -1,570 +1,524 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propuesta para Óptica Visión Clara</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    /* RESET OBLIGATORIO - NO QUITAR */
-    *{box-sizing:border-box;margin:0;padding:0}
-    /* FIN RESET OBLIGATORIO */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Comercial - Catering Sabor y Estilo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET OBLIGATORIO */
+        *{box-sizing:border-box;margin:0;padding:0}
 
-    :root{
-      /* Tokens de Color Campuslands (Base Clara) */
-      --bg-0:#F2F3F5;
-      --bg-1:#E9EBEF;
-      --bg-2:#FFFFFF;
-      --bg-deep:#E2E4E9;
-      --text-hi:#14161B;
-      --text-mid:#3D4451;
-      --text-lo:#6B7280;
-      --text-faint:#9CA3AF;
-      --card-border:rgba(20,25,35,.10);
-      --dot-confidential:#800000; /* Rojo para confidencialidad */
-      --radius:14px;
+        /* FUENTES */
+        :root{
+            --font-display:'Playfair Display',serif;
+            --font-eyebrow:'Montserrat',sans-serif;
+            --font-body:'Poppins',sans-serif;
+        }
 
-      /* COLORES DE MARCA REMAPEADOS: Azul Petroleo y Dorado Suave de Optica Vision Clara */
-      --petroleo: #005F6B; /* Azul petroleo, profundizado para contraste */
-      --gold-soft: #D4AF37; /* Dorado suave */
+        /* TOKENS DE COLOR (ADAPTADOS A IDENTIDAD DE MARCA: VINO TINTO Y DORADO) */
+        :root{
+            --bg-0:#F2F3F5;
+            --bg-1:#E9EBEF;
+            --bg-2:#FFFFFF;
+            --bg-deep:#E2E4E9;
+            --bg-glow-a:rgba(212,175,55,.09); /* Dorado */
+            --bg-glow-b:rgba(155,34,38,.09); /* Vino Tinto */
+            --bg-wash:linear-gradient(135deg,rgba(212,175,55,.06) 0%,rgba(184,134,11,.05) 32%,rgba(155,34,38,.05) 66%,rgba(128,0,32,.07) 100%);
+            --text-hi:#14161B;
+            --text-mid:#3D4451;
+            --text-lo:#6B7280;
+            --text-faint:#9CA3AF;
+            --cyan:#D4AF37; /* Dorado principal */
+            --blue:#B8860B; /* Dorado oscuro */
+            --violet:#9B2226; /* Vino tinto */
+            --magenta:#800020; /* Vino tinto oscuro */
+            --grad-brand:linear-gradient(100deg,#D4AF37 0%,#9B2226 100%); /* Dorado a Vino Tinto */
+            --card-border:rgba(20,25,35,.10);
+            --dot-confidential:#C98A00;
+            --radius:14px
+        }
 
-      --cyan: #008C99; /* Tono más claro de petroleo */
-      --blue: var(--petroleo);
-      --violet: #A18831; /* Un dorado más oscuro/tostado para transiciones */
-      --magenta: var(--gold-soft);
-      --grad-brand: linear-gradient(100deg, var(--cyan) 0%, var(--blue) 38%, var(--violet) 72%, var(--magenta) 100%);
-      --bg-glow-a: rgba(0, 95, 107, .09); /* Resplandor petroleo claro */
-      --bg-glow-b: rgba(212, 175, 55, .09); /* Resplandor dorado claro */
-      --bg-wash: linear-gradient(135deg,rgba(0,140,153,.06) 0%,rgba(0,95,107,.05) 32%,rgba(161,136,49,.05) 66%,rgba(212,175,55,.07) 100%);
+        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
+        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
+        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
+        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
+        .wordmark{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
+        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
+        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
+        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
+        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
+        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+        .slide.active{display:block;opacity:1;transform:translateY(0)}
+        .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+        .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .control-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+        .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
+        #slide-number-display{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
+        .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
+        .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
+        .s-body{overflow:hidden}
+        .cover-body,.cover__body{overflow:hidden}
+        svg{display:block}
+        .icon-sm,.icon-md{flex:none}
+        .icon-sm{width:22px;height:22px}
+        .icon-md{width:36px;height:36px}
 
-      /* Fuentes */
-      --font-display:'Playfair Display',serif;
-      --font-body:'Poppins',sans-serif;
-      --font-label:'Montserrat',sans-serif;
-    }
+        /* CSS OBLIGATORIA Y LITERAL para la portada */
+        .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
+        .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
+        .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
+        .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
 
-    body{
-      height:100vh;
-      overflow:hidden;
-      background:var(--bg-0);
-      color:var(--text-hi);
-      font-family:var(--font-body,'Poppins',sans-serif);
-      display:flex;
-      flex-direction:column;
-      background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);
-      background-attachment:fixed;
-      font-size: 16px; /* Base font size */
-      line-height: 1.6;
-    }
+        /* CSS OBLIGATORIA Y LITERAL para la lamina interna */
+        .slide-inner.internal{display:grid;grid-template-rows:auto minmax(0,1fr) auto;row-gap:18px;padding:34px 54px 20px}
+        .s-header{display:flex;justify-content:space-between;align-items:center}
+        .s-body{min-height:0;overflow:hidden}
+        .s-footer{display:flex;justify-content:space-between;align-items:center}
 
-    /* SHELL CSS */
-    .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
-    .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
-    .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
-    .wordmark{font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-    .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
-    .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
-    .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
-    .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
-    .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-    .slide.active{display:block;opacity:1;transform:translateY(0)}
-    .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-    .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-    .control-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-    .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
-    #slide-number-display{font-family:var(--font-label);font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
-    .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
-    .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
-    .s-body{min-height:0;overflow:hidden}
-    .cover-body,.cover__body{min-height:0;overflow:hidden}
-    svg{display:block}
-    .icon-sm,.icon-md{flex:none}
-    .icon-sm{width:22px;height:22px}
-    .icon-md{width:36px;height:36px}
+        /* PATRONES DE CONTENIDO Y TIPOGRAFIA */
+        h1{font-family:var(--font-display);font-weight:900;font-size:72px;line-height:1.1em;letter-spacing:-.02em;color:var(--text-hi)}
+        h2{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2em;letter-spacing:-.01em;color:var(--text-hi)}
+        h3{font-family:var(--font-display);font-weight:700;font-size:28px;line-height:1.3em;color:var(--text-hi)}
+        p{font-family:var(--font-body);font-weight:400;font-size:17px;line-height:1.6em;color:var(--text-mid)}
+        .eyebrow{font-family:var(--font-eyebrow);font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo)}
+        .label{font-family:var(--font-eyebrow);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+        .caption{font-family:var(--font-body);font-weight:300;font-size:14px;color:var(--text-lo)}
+        .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2em;letter-spacing:-.01em;color:var(--text-hi);margin-top:18px;margin-bottom:28px}
+        .s-text{font-size:17px;line-height:1.6em;color:var(--text-mid)}
+        .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+        
+        /* Contenedores de contenido */
+        .content-grid{display:grid;gap:24px;width:100%;align-items:stretch;}
+        .content-split-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+        .content-split-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+        .card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px;text-align:left;}
+        .card-top-gradient{border-top:3px solid transparent;border-image:var(--grad-brand) 1;border-image-slice:1;}
+        .card-left-gradient{border-left:5px solid transparent;border-image:var(--grad-brand) 1;border-image-slice:1;}
+        .card .card-title{font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--text-hi);line-height:1.3em;}
+        .card .card-text{font-size:15px;line-height:1.5em;color:var(--text-mid);}
+        .card-feature-numbered{display:flex;flex-direction:column;gap:12px;}
+        .card-feature-numbered .number{font-family:var(--font-display);font-weight:700;font-size:38px;color:var(--blue);line-height:1em;}
+        .list-item{display:flex;align-items:flex-start;gap:12px;}
+        .list-item span{font-size:16px;line-height:1.5em;color:var(--text-mid);display:block;}
+        .list-item strong{font-weight:700;color:var(--text-hi);}
 
-    /* Patron de Portada */
-    .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
-    .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
-    .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
-    .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
+        /* Flujo de pasos horizontal */
+        .flow-container{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;margin-top:20px;}
+        .flow-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;min-width:0;}
+        .flow-step .step-number{font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--violet);line-height:1em;}
+        .flow-step .step-title{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--text-hi);line-height:1.3em;}
+        .flow-step .step-description{font-size:14px;line-height:1.5em;color:var(--text-mid);}
+        .flow-arrow{flex:none;margin-top:60px;color:var(--text-faint);}
 
-    /* Patron de Lamina Interna */
-    .slide-inner.internal{display:grid;grid-template-rows:auto minmax(0,1fr) auto;row-gap:18px;padding:34px 54px 20px}
-    .s-header{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-    .s-footer{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-label);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
-    .s-footer .page-number{color:var(--blue);font-weight:700;}
+        /* Contact card */
+        .contact-card{background:var(--bg-2);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:12px;justify-content:center;height:100%;}
+        .contact-card .contact-info{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--text-mid);}
+        .contact-card .contact-title{font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--text-hi);line-height:1.3em;}
+        .contact-card .contact-subtitle{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-lo);}
+        .contact-card .cta-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;background:var(--grad-brand);color:#fff;font-family:var(--font-eyebrow);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;text-decoration:none;margin-top:20px;}
 
-    /* Elementos tipográficos */
-    .eyebrow{font-family:var(--font-label);font-weight:600;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-mid);margin-bottom:10px}
-    .s-title{font-family:var(--font-display);font-weight:900;font-size:42px;line-height:1.2;color:var(--text-hi);margin-bottom:18px;}
-    .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:19px;color:var(--text-mid);max-width:80%;margin-bottom:24px;}
-    .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-    h3{font-family:var(--font-body);font-weight:600;font-size:24px;color:var(--text-hi);margin-bottom:12px;line-height:1.3;}
-    p{font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--text-mid);margin-bottom:1em;}
-    ul{list-style:none;padding:0;margin:0;}
-    ul li{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:16px;color:var(--text-mid);}
-    ul li svg{flex-shrink:0;}
-    ul li span{line-height:1.4;}
-    ul li strong{font-weight:600;color:var(--text-hi);}
-    .meta-label{font-family:var(--font-label);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
-    .meta-value{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-hi);}
+        /* Lista de pasos verticales */
+        .vertical-steps{display:flex;flex-direction:column;gap:28px;position:relative;}
+        .vertical-steps .step-item{display:flex;align-items:flex-start;gap:18px;}
+        .vertical-steps .step-number-circle{flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue);color:var(--bg-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-eyebrow);font-weight:700;font-size:15px;}
+        .vertical-steps .step-content{display:flex;flex-direction:column;gap:4px;}
+        .vertical-steps .step-content h3{font-size:20px;margin:0;}
+        .vertical-steps .step-content p{font-size:15px;color:var(--text-lo);margin:0;}
+        .vertical-steps::before{content:'';position:absolute;left:17px;top:30px;bottom:30px;width:2px;background:var(--card-border);z-index:0;}
 
-    /* Patrones de Contenido */
-    .content-block{padding:20px 0; display:flex; flex-direction:column; gap:20px;}
-    .card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;}
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch;}
-    .card-feature{display:flex;flex-direction:column;gap:12px;padding:22px;border-top:3px solid transparent;border-image:var(--grad-brand);border-image-slice:1;}
-    .card-feature h4{font-family:var(--font-body);font-weight:600;font-size:18px;color:var(--text-hi);}
-    .card-feature p{font-size:14px;line-height:1.5;color:var(--text-lo);}
-    .card-feature .number{font-family:var(--font-display);font-weight:900;font-size:36px;color:var(--text-faint);opacity:.6;line-height:1;margin-bottom:10px;}
-
-    .split-layout{display:grid;grid-template-columns:1fr 1px 1fr;gap:40px;height:100%;}
-    .split-divider{background:var(--card-border);}
-    .split-content{display:flex;flex-direction:column;gap:20px;}
-
-    .flow-steps{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;padding:20px 0;}
-    .flow-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;}
-    .flow-step .step-number{font-family:var(--font-display);font-weight:900;font-size:52px;line-height:1;color:var(--blue);opacity:.8;margin-bottom:8px;}
-    .flow-step h4{font-family:var(--font-body);font-weight:600;font-size:20px;color:var(--text-hi);margin-bottom:4px;}
-    .flow-step p{font-size:15px;color:var(--text-mid);line-height:1.4;}
-    .flow-arrow{flex:none;width:40px;height:auto;margin-top:40px;color:var(--text-faint);}
-    .flow-arrow svg{transform:translateY(-50%);}
-
-    .contact-card{background:var(--bg-2);border:1px solid var(--card-border);border-left:5px solid transparent;border-image:var(--grad-brand);border-image-slice:1;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:14px;}
-    .contact-card .contact-info{display:flex;align-items:center;gap:12px;}
-    .contact-card .contact-info span{font-size:17px;color:var(--text-mid);}
-    .contact-card .contact-title{font-family:var(--font-body);font-weight:700;font-size:22px;color:var(--text-hi);margin-bottom:8px;}
-    .contact-card .cta-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--grad-brand);color:#fff;padding:12px 24px;border-radius:99px;font-family:var(--font-label);font-weight:700;font-size:14px;letter-spacing:.05em;text-decoration:none;margin-top:20px;}
-    .contact-card .cta-btn:hover{opacity:.9;}
-
-    .vertical-steps{display:flex;flex-direction:column;gap:25px;}
-    .v-step-item{display:grid;grid-template-columns:30px 1fr;gap:15px;}
-    .v-step-item .step-circle{width:28px;height:28px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;font-size:14px;flex-shrink:0;position:relative;z-index:1;}
-    .v-step-item .step-circle::after{content:'';position:absolute;top:28px;left:50%;transform:translateX(-50%);height:calc(100% + 25px);width:2px;background:var(--card-border);z-index:0;}
-    .v-step-item:last-child .step-circle::after{display:none;}
-    .v-step-item h4{font-family:var(--font-body);font-weight:600;font-size:19px;color:var(--text-hi);margin-bottom:4px;}
-    .v-step-item p{font-size:15px;color:var(--text-mid);}
-
-    .price-list{display:flex;flex-direction:column;gap:15px;}
-    .price-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--card-border);}
-    .price-item:last-child{border-bottom:none;}
-    .price-item span:first-child{font-family:var(--font-body);font-weight:500;font-size:17px;color:var(--text-hi);}
-    .price-item span:last-child{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--blue);}
-    .price-item.note{font-size:15px;color:var(--text-lo);justify-content:flex-start;border-bottom:none;}
-    .price-item.note span{font-size:15px;color:var(--text-lo);font-weight:400;}
-
-    /* Iconos SVG */
-    .icon-check { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-point { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-arrow-right { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-document { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-calendar { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-chat { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-speed { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-wrench { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-settings { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-search { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-clock { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-phone { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-mail { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-eye { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-glasses { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-contact-lenses { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-user { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .icon-award { width: 36px; height: 36px; stroke: currentColor; stroke-width: 2; fill: none; }
-  </style>
+        /* Estilos específicos para tablas de precios */
+        .price-table{width:100%;border-collapse:collapse;margin-top:20px;}
+        .price-table th, .price-table td{text-align:left;padding:14px 20px;border-bottom:1px solid var(--card-border);}
+        .price-table th{font-family:var(--font-eyebrow);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);background:var(--bg-1);}
+        .price-table td{font-family:var(--font-body);font-size:16px;color:var(--text-mid);}
+        .price-table td strong{color:var(--text-hi);font-weight:600;}
+        .price-table td.price{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--blue);}
+    </style>
 </head>
 <body>
-  <header class="app-header">
-    <div class="header-left">
-      <span class="wordmark">Campuslands Full Service</span>
-    </div>
-    <div class="header-center"></div>
-    <div class="header-right">
-      <span class="badge-confidential">Confidencial</span>
-    </div>
-  </header>
-
-  <main class="app-content">
-    <section class="slides-viewport">
-      <div class="slides-container" id="slides-container">
-
-        <!-- SLIDE 1: Portada -->
-        <div class="slide active" data-slide="1">
-          <div class="slide-inner cover">
-            <div class="cover__topbar">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="badge-confidential">Confidencial</span>
-            </div>
-            <div class="cover__body">
-              <div class="eyebrow">PROPUESTA DE SERVICIOS DIGITALES</div>
-              <h1 class="s-title" style="font-size:62px;">Óptica <span class="gt">Visión Clara</span></h1>
-              <p class="s-subtitle">Modernizando tu atención, optimizando tu operación.</p>
-            </div>
-            <div class="cover__meta">
-              <div>
-                <div class="meta-label">Preparado para</div>
-                <div class="meta-value">Martha Cecilia Villamizar Ortiz</div>
-                <div class="meta-value">Óptica Visión Clara</div>
-              </div>
-              <div>
-                <div class="meta-label">Preparado por</div>
-                <div class="meta-value">Campuslands Full Service</div>
-              </div>
-              <div>
-                <div class="meta-label">Fecha</div>
-                <div class="meta-value">20 de Mayo de 2024</div>
-              </div>
-              <div>
-                <div class="meta-label">Versión</div>
-                <div class="meta-value">1.0</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 2: Diagnostico/Linea base -->
-        <div class="slide" data-slide="2">
-          <div class="slide-inner internal glow-a">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">01 · SITUACIÓN ACTUAL</div>
-              <h2 class="s-title">Desafíos en la <span class="gt">gestión</span> y comunicación</h2>
-              <div class="content-block">
-                <h3>Agendamiento ineficiente y citas duplicadas</h3>
-                <p>La gestión manual de citas por WhatsApp y cuaderno físico genera solapamientos, sobrecarga administrativa y frustración para pacientes y personal.</p>
-                <h3>Información confusa sobre servicios y costos</h3>
-                <p>La falta de claridad en los precios y procesos de examen visual y compra de gafas causa malentendidos constantes con clientes nuevos.</p>
-                <h3>Catálogo de monturas y recordatorios ausentes</h3>
-                <p>No existe un escaparate digital para las monturas ni un sistema de recordatorios de control anual, lo que resulta en oportunidades de venta perdidas y baja retención de pacientes.</p>
-              </div>
-            </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">01 / 07</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 3: La Solución / Arquitectura -->
-        <div class="slide" data-slide="3">
-          <div class="slide-inner internal glow-b">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">02 · LA SOLUCIÓN</div>
-              <h2 class="s-title">Una plataforma <span class="gt">integral</span> para tu óptica</h2>
-              <div class="split-layout" style="margin-top:20px;">
-                <div class="split-content">
-                  <h3>Optimización y claridad digital</h3>
-                  <p>Diseñaremos una página web profesional que proyecte la confianza y calidez de Óptica Visión Clara, centralizando la información y mejorando la experiencia del cliente.</p>
-                  <ul>
-                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Agendamiento simplificado</strong>: Un sistema en línea para gestionar citas sin cruces.</span></li>
-                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Transparencia total</strong>: Información clara sobre procesos, precios y beneficios.</span></li>
-                    <li><svg class="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Catálogo virtual</strong>: Exhibe tus monturas y lentes de contacto antes de la visita.</span></li>
-                  </ul>
-                </div>
-                <div class="split-divider"></div>
-                <div class="split-content" style="gap:24px;">
-                  <div class="card card-feature">
-                    <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    <h4>Procesos Claros</h4>
-                    <p>Detalle del proceso de examen visual, elección y entrega, eliminando confusiones.</p>
-                  </div>
-                  <div class="card card-feature">
-                    <svg class="icon-md" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    <h4>Formulario de Citas</h4>
-                    <p>Herramienta online para que los pacientes agenden sus exámenes visuales.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">02 / 07</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 4: Modulos/Alcance -->
-        <div class="slide" data-slide="4">
-          <div class="slide-inner internal glow-a">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">03 · ALCANCE DEL PROYECTO</div>
-              <h2 class="s-title">Funcionalidades clave para una <span class="gt">experiencia superior</span></h2>
-              <div class="card-grid" style="margin-top:20px;">
-                <div class="card card-feature">
-                  <span class="number">01</span>
-                  <svg class="icon-md icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  <h4>Proceso de Examen Visual</h4>
-                  <p>Explicación detallada del paso a paso, desde la llegada hasta la entrega de la fórmula.</p>
-                </div>
-                <div class="card card-feature">
-                  <span class="number">02</span>
-                  <svg class="icon-md icon-glasses" viewBox="0 0 24 24"><path d="M10 2L2 9.5l8 7.5L18 9.5z"/><path d="M16 2L8 9.5l8 7.5L24 9.5z"/><path d="M12 2v10.5"/></svg>
-                  <h4>Catálogo de Monturas</h4>
-                  <p>Galería por categorías para que los clientes exploren estilos antes de visitar el local.</p>
-                </div>
-                <div class="card card-feature">
-                  <span class="number">03</span>
-                  <svg class="icon-md icon-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  <h4>Agendamiento de Citas</h4>
-                  <p>Formulario intuitivo para que los pacientes soliciten y programen su examen visual.</p>
-                </div>
-                <div class="card card-feature">
-                  <span class="number">04</span>
-                  <svg class="icon-md icon-contact-lenses" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4"/></svg>
-                  <h4>Información Lentes de Contacto</h4>
-                  <p>Detalles sobre tipos de lentes, adaptación y consejos esenciales para su cuidado.</p>
-                </div>
-                <div class="card card-feature">
-                  <span class="number">05</span>
-                  <svg class="icon-md icon-chat" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                  <h4>Botón Directo WhatsApp</h4>
-                  <p>Acceso rápido a consultas personalizadas, manteniendo la conexión directa con el cliente.</p>
-                </div>
-              </div>
-            </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">03 / 07</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 5: Como funciona / flujo de uso -->
-        <div class="slide" data-slide="5">
-          <div class="slide-inner internal glow-b">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">04 · FLUIDEZ DE USO</div>
-              <h2 class="s-title">De la necesidad a la <span class="gt">solución</span> en pocos clics</h2>
-              <div class="flow-steps" style="margin-top:40px;">
-                <div class="flow-step">
-                  <span class="step-number">01</span>
-                  <h4>Consulta Online</h4>
-                  <p>El paciente explora servicios, monturas y lentes de contacto desde la comodidad de su hogar.</p>
-                </div>
-                <div class="flow-arrow"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-                <div class="flow-step">
-                  <span class="step-number">02</span>
-                  <h4>Agenda o Pregunta</h4>
-                  <p>Utiliza el formulario de citas para agendar su examen o el botón de WhatsApp para una consulta rápida.</p>
-                </div>
-                <div class="flow-arrow"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-                <div class="flow-step">
-                  <span class="step-number">03</span>
-                  <h4>Visita y Atención</h4>
-                  <p>Llega a la óptica con información clara, listo para una atención personalizada y eficiente.</p>
-                </div>
-              </div>
-            </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">04 / 07</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 6: Por que Campuslands -->
-        <div class="slide" data-slide="6">
-          <div class="slide-inner internal glow-a">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">05 · POR QUÉ ELEGIRNOS</div>
-              <h2 class="s-title">Experiencia y <span class="gt">confianza</span> en cada proyecto</h2>
-              <div class="card-grid" style="margin-top:20px; grid-template-columns:1fr 1fr;">
-                <div class="card" style="padding:32px;">
-                  <svg class="icon-md icon-user" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  <h3>Enfoque Personalizado</h3>
-                  <p>Entendemos la importancia de la atención directa en una óptica. Diseñamos para complementar, no reemplazar, tu relación con el cliente.</p>
-                  <ul>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Interfaz intuitiva</strong>: Facilita el acceso a información clave para todos los rangos de edad.</span></li>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Diseño a medida</strong>: Reflejamos la confianza y calidez de Óptica Visión Clara.</span></li>
-                  </ul>
-                </div>
-                <div class="card" style="padding:32px;">
-                  <svg class="icon-md icon-award" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-                  <h3>Resultados Comprobados</h3>
-                  <p>Nuestra experiencia en soluciones digitales garantiza un proyecto exitoso que optimiza tu operación y atrae a tu público objetivo.</p>
-                  <ul>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Reducción de carga</strong>: Menos consultas repetitivas, más tiempo para la atención especializada.</span></li>
-                    <li><svg class="icon-point" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg><span><strong>Mayor alcance</strong>: Conecta con jóvenes y adultos mayores en Bucaramanga y el área metropolitana.</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">05 / 07</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 7: Inversion y forma de pago -->
-        <div class="slide" data-slide="7">
-          <div class="slide-inner internal glow-b">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">06 · INVERSIÓN Y CRONOGRAMA</div>
-              <h2 class="s-title">Precios <span class="gt">transparentes</span> y plazos definidos</h2>
-              <div class="split-layout" style="margin-top:20px; grid-template-columns:2fr 1px 1fr;">
-                <div class="split-content">
-                  <h3>Servicios y Costos de Referencia</h3>
-                  <p>Estos valores te orientan sobre nuestra estructura de precios, que se adaptará a las especificaciones finales de tu proyecto.</p>
-                  <div class="price-list">
-                    <div class="price-item">
-                      <span>Examen Visual Completo (30 min)</span>
-                      <span>$45.000 COP</span>
+    <header class="app-header">
+        <div class="header-left"><span class="wordmark">Campuslands Full Service</span></div>
+        <div class="header-center"></div>
+        <div class="header-right"><span class="badge-confidential">Confidencial</span></div>
+    </header>
+    <main class="app-content">
+        <section class="slides-viewport">
+            <div class="slides-container" id="slides-container">
+                <!-- Slide 1: Portada -->
+                <div class="slide active" data-slide="1">
+                    <div class="slide-inner cover">
+                        <div class="cover__topbar">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="badge-confidential">Confidencial</span>
+                        </div>
+                        <div class="cover__body">
+                            <span class="eyebrow">Propuesta Comercial</span>
+                            <h1><span class="gt">Experiencias</span> Gastronómicas <br> Digitales</h1>
+                            <p>Elevando el sabor y el servicio de Catering Sabor y Estilo.</p>
+                            <h2 style="font-family:var(--font-display);font-weight:700;font-style:italic;font-size:52px;line-height:1.1em;color:var(--text-hi);margin-top:40px;">PARA CATERING SABOR Y ESTILO</h2>
+                        </div>
+                        <div class="cover__meta">
+                            <div>
+                                <span class="label">Preparado para</span>
+                                <p class="caption" style="margin-top:4px;">Liliana Marcela Pabon Duran</p>
+                                <p class="caption">Chef Ejecutiva y Propietaria</p>
+                            </div>
+                            <div>
+                                <span class="label">Preparado por</span>
+                                <p class="caption" style="margin-top:4px;">Campuslands Full Service</p>
+                            </div>
+                            <div>
+                                <span class="label">Fecha</span>
+                                <p class="caption" style="margin-top:4px;">17 de Mayo de 2024</p>
+                            </div>
+                            <div>
+                                <span class="label">Version</span>
+                                <p class="caption" style="margin-top:4px;">1.0</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="price-item">
-                      <span>Examen Visual (con compra de gafas)</span>
-                      <span>Incluido sin costo</span>
-                    </div>
-                    <div class="price-item">
-                      <span>Montura Básica + Lentes Formulados (desde)</span>
-                      <span>$180.000 COP</span>
-                    </div>
-                    <div class="price-item">
-                      <span>Lentes de Contacto (adaptación inicial) (desde)</span>
-                      <span>$90.000 COP</span>
-                    </div>
-                  </div>
                 </div>
-                <div class="split-divider"></div>
-                <div class="split-content">
-                  <h3>Cronograma de Implementación</h3>
-                  <p>Trabajaremos con agilidad y dedicación para que tu plataforma esté lista en el siguiente plazo:</p>
-                  <div class="card" style="padding:32px; text-align:center; background:var(--bg-deep);">
-                    <svg class="icon-md icon-clock" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <h3 style="margin-bottom:0; font-size:38px; color:var(--blue);">3 a 4 Semanas</h3>
-                    <p style="margin-bottom:0;">Tiempo estimado para el desarrollo y lanzamiento completo de tu sitio web.</p>
-                  </div>
+
+                <!-- Slide 2: Diagnostico/Linea Base -->
+                <div class="slide" data-slide="2">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="wordmark">CATERING SABOR Y ESTILO</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">01 · SITUACIÓN ACTUAL</span>
+                            <h2 class="s-title">Los desafíos que <span class="gt">frenan</span> tu crecimiento</h2>
+                            <p class="s-text">Tu operación actual, dependiente de referidos e Instagram, enfrenta obstáculos que limitan su expansión.</p>
+                            <div class="content-split-2" style="margin-top:30px;">
+                                <div class="card" style="gap:18px;">
+                                    <div style="border-bottom:1px solid var(--card-border);padding-bottom:12px;margin-bottom:8px;">
+                                        <h3><span style="color:var(--blue);">Visibilidad</span> y Eficiencia</h3>
+                                    </div>
+                                    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;">
+                                        <li class="list-item">
+                                            <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/></svg>
+                                            <span><strong>Información dispersa</strong>: Las empresas no encuentran fácilmente menús ni precios corporativos.</span>
+                                        </li>
+                                        <li class="list-item">
+                                            <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/></svg>
+                                            <span><strong>Cotizaciones manuales</strong>: Cada propuesta se elabora desde cero por WhatsApp, alargando la decisión del cliente.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card" style="gap:18px;">
+                                    <div style="border-bottom:1px solid var(--card-border);padding-bottom:12px;margin-bottom:8px;">
+                                        <h3><span style="color:var(--violet);">Oportunidades</span> Perdidas</h3>
+                                    </div>
+                                    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;">
+                                        <li class="list-item">
+                                            <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/></svg>
+                                            <span><strong>Falta de visuales</strong>: No hay forma de mostrar fotos impactantes de montajes y platos, crucial para bodas.</span>
+                                        </li>
+                                        <li class="list-item">
+                                            <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/></svg>
+                                            <span><strong>Gestión de agenda</strong>: Se pierden eventos grandes por falta de un calendario de disponibilidad visible.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span class="label">Campuslands Full Service</span>
+                            <span class="label">Cotizacion Catering Sabor y Estilo</span>
+                            <span class="label" style="color:var(--blue);">01</span>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">06 / 07</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- SLIDE 8: Cierre y proximos pasos -->
-        <div class="slide" data-slide="8">
-          <div class="slide-inner internal glow-a">
-            <div class="s-header">
-              <span class="wordmark">Campuslands Full Service</span>
-              <span class="wordmark">Óptica Visión Clara</span>
-            </div>
-            <div class="s-body">
-              <div class="eyebrow">07 · PRÓXIMOS PASOS</div>
-              <h2 class="s-title">Impulsemos juntos la <span class="gt">transformación</span> de tu óptica</h2>
-              <div class="split-layout" style="margin-top:20px;">
-                <div class="split-content">
-                  <div class="vertical-steps">
-                    <div class="v-step-item">
-                      <div class="step-circle">1</div>
-                      <div>
-                        <h4>Revisión y ajustes</h4>
-                        <p>Analizaremos esta propuesta y ajustaremos cualquier detalle según tus comentarios y preferencias.</p>
-                      </div>
+                <!-- Slide 3: La Solucion / Arquitectura -->
+                <div class="slide" data-slide="3">
+                    <div class="slide-inner internal glow-b">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="wordmark">CATERING SABOR Y ESTILO</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">02 · LA SOLUCIÓN</span>
+                            <h2 class="s-title">Una plataforma que <span class="gt">impulsa</span> tus eventos</h2>
+                            <p class="s-text">Crearemos una presencia digital robusta que no solo atraiga, sino que convierta a tus visitantes en clientes satisfechos.</p>
+                            <div class="flow-container">
+                                <div class="flow-step card">
+                                    <span class="step-number" style="color:var(--cyan);">01</span>
+                                    <span class="step-title">Digitalización de Menús</span>
+                                    <span class="step-description">Menús claros y accesibles por tipo de evento con precios de referencia.</span>
+                                </div>
+                                <svg class="flow-arrow icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                <div class="flow-step card">
+                                    <span class="step-number" style="color:var(--violet);">02</span>
+                                    <span class="step-title">Cotización Simplificada</span>
+                                    <span class="step-description">Formulario inteligente que agiliza el proceso de solicitud de cotización.</span>
+                                </div>
+                                <svg class="flow-arrow icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                <div class="flow-step card">
+                                    <span class="step-number" style="color:var(--blue);">03</span>
+                                    <span class="step-title">Impacto Visual</span>
+                                    <span class="step-description">Galería de fotos de alta calidad para mostrar tus montajes y platos.</span>
+                                </div>
+                                <svg class="flow-arrow icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                <div class="flow-step card">
+                                    <span class="step-number" style="color:var(--magenta);">04</span>
+                                    <span class="step-title">Conexión Directa</span>
+                                    <span class="step-description">Botón de WhatsApp para consultas rápidas y personalizadas.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span class="label">Campuslands Full Service</span>
+                            <span class="label">Cotizacion Catering Sabor y Estilo</span>
+                            <span class="label" style="color:var(--blue);">02</span>
+                        </div>
                     </div>
-                    <div class="v-step-item">
-                      <div class="step-circle">2</div>
-                      <div>
-                        <h4>Desarrollo y pruebas</h4>
-                        <p>Nuestro equipo comenzará el desarrollo de tu sitio web, manteniéndote informada del progreso y realizando pruebas exhaustivas.</p>
-                      </div>
-                    </div>
-                    <div class="v-step-item">
-                      <div class="step-circle">3</div>
-                      <div>
-                        <h4>Lanzamiento y soporte</h4>
-                        <p>Pondremos tu plataforma en línea y te ofreceremos el soporte necesario para asegurar su óptimo funcionamiento.</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div class="split-divider"></div>
-                <div class="split-content" style="align-items:center; justify-content:center;">
-                  <div class="contact-card" style="width:100%; max-width:400px; text-align:center;">
-                    <h3 class="contact-title">¡Conversemos!</h3>
-                    <p>Estamos listos para modernizar Óptica Visión Clara y optimizar tu interacción con los pacientes. Contáctanos para empezar.</p>
-                    <div class="contact-info">
-                      <svg class="icon-phone" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                      <span>312 509 6647 (Martha Cecilia)</span>
+
+                <!-- Slide 4: Modulos/Alcance -->
+                <div class="slide" data-slide="4">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="wordmark">CATERING SABOR Y ESTILO</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">03 · ALCANCE DEL PROYECTO</span>
+                            <h2 class="s-title">Componentes clave para una <span class="gt">experiencia</span> fluida</h2>
+                            <p class="s-text">Tu nueva plataforma web estará equipada con las siguientes funcionalidades esenciales:</p>
+                            <div class="content-grid" style="grid-template-columns:repeat(2,1fr);margin-top:30px;">
+                                <div class="card card-feature-numbered">
+                                    <span class="number" style="color:var(--cyan);">01</span>
+                                    <h3 class="card-title">Menús de Referencia Dinámicos</h3>
+                                    <p class="card-text">Clasificados por tipo de evento: matrimonios, corporativos y celebraciones familiares.</p>
+                                </div>
+                                <div class="card card-feature-numbered">
+                                    <span class="number" style="color:var(--violet);">02</span>
+                                    <h3 class="card-title">Precios Claros por Persona</h3>
+                                    <p class="card-text">Información de costos transparentes y ajustados a cada tipo de menú.</p>
+                                </div>
+                                <div class="card card-feature-numbered">
+                                    <span class="number" style="color:var(--blue);">03</span>
+                                    <h3 class="card-title">Formulario de Cotización Web</h3>
+                                    <p class="card-text">Diseñado para capturar la fecha del evento y el número de invitados de forma eficiente.</p>
+                                </div>
+                                <div class="card card-feature-numbered">
+                                    <span class="number" style="color:var(--magenta);">04</span>
+                                    <h3 class="card-title">Sección de Servicios Adicionales</h3>
+                                    <p class="card-text">Para destacar opciones como montaje de mesa, meseros y barra de bebidas.</p>
+                                </div>
+                                <div class="card card-feature-numbered">
+                                    <span class="number" style="color:var(--cyan);">05</span>
+                                    <h3 class="card-title">Galería Visual de Eventos</h3>
+                                    <p class="card-text">Una sección dedicada para mostrar imágenes impactantes de tus montajes y platos.</p>
+                                </div>
+                                <div class="card card-feature-numbered">
+                                    <span class="number" style="color:var(--violet);">06</span>
+                                    <h3 class="card-title">Botón Directo de WhatsApp</h3>
+                                    <p class="card-text">Facilita la comunicación inmediata con tus clientes para consultas rápidas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span class="label">Campuslands Full Service</span>
+                            <span class="label">Cotizacion Catering Sabor y Estilo</span>
+                            <span class="label" style="color:var(--blue);">03</span>
+                        </div>
                     </div>
-                    <div class="contact-info">
-                      <svg class="icon-mail" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                      <span>martha@opticavisionclara.co</span>
-                    </div>
-                    <a href="https://wa.me/573125096647" target="_blank" class="cta-btn">Contactar ahora</a>
-                  </div>
                 </div>
-              </div>
+
+                <!-- Slide 5: Diferenciales del Cliente -->
+                <div class="slide" data-slide="5">
+                    <div class="slide-inner internal glow-b">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="wordmark">CATERING SABOR Y ESTILO</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">04 · VALOR DIFERENCIAL</span>
+                            <h2 class="s-title">La <span class="gt">excelencia</span> que te distingue</h2>
+                            <p class="s-text">Catering Sabor y Estilo se diferencia en el mercado de Bucaramanga por su calidad y profesionalismo.</p>
+                            <div class="content-split-2" style="margin-top:30px;">
+                                <div class="card card-top-gradient" style="gap:18px;">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    <h3 class="card-title">Chef Ejecutiva Profesional</h3>
+                                    <p class="card-text">Liderada por una chef con formación profesional, garantizando una propuesta gastronómica de alta calidad.</p>
+                                </div>
+                                <div class="card card-top-gradient" style="gap:18px;">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <h3 class="card-title">Cocina Propia y Gran Capacidad</h3>
+                                    <p class="card-text">Con infraestructura para atender hasta 300 personas por evento sin subcontratar la producción.</p>
+                                </div>
+                                <div class="card card-top-gradient" style="gap:18px;">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                    <h3 class="card-title">Degustación Previa Incluida</h3>
+                                    <p class="card-text">Ofrecemos una degustación sin costo para garantizar la satisfacción en eventos de matrimonio.</p>
+                                </div>
+                                <div class="card card-top-gradient" style="gap:18px;">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <h3 class="card-title">Servicio Completo en Paquetes</h3>
+                                    <p class="card-text">Montaje de mesa y servicio de meseros incluidos en todos nuestros paquetes completos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span class="label">Campuslands Full Service</span>
+                            <span class="label">Cotizacion Catering Sabor y Estilo</span>
+                            <span class="label" style="color:var(--blue);">04</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Inversion y Plazo -->
+                <div class="slide" data-slide="6">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="wordmark">CATERING SABOR Y ESTILO</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">05 · INVERSIÓN Y CRONOGRAMA</span>
+                            <h2 class="s-title"><span class="gt">Propuesta</span> de Valor y Plazos</h2>
+                            <p class="s-text">Tu inversión se traduce en una plataforma que potenciará tu negocio, con un cronograma ágil para resultados rápidos.</p>
+                            <div class="content-grid" style="grid-template-columns:1fr 0.7fr;gap:40px;margin-top:30px;">
+                                <div>
+                                    <h3 style="margin-bottom:15px;">Menús y Precios de Referencia</h3>
+                                    <table class="price-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo de Menú</th>
+                                                <th>Incluye</th>
+                                                <th>Precio por Persona</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Corporativo Básico</strong></td>
+                                                <td>Plato fuerte + bebida</td>
+                                                <td class="price">Desde $28.000 COP</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Matrimonio Clásico</strong></td>
+                                                <td>Entrada + fuerte + postre + meseros</td>
+                                                <td class="price">Desde $65.000 COP</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Matrimonio Premium</strong></td>
+                                                <td>3 tiempos + barra de bebidas + montaje</td>
+                                                <td class="price">Desde $95.000 COP</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Celebraciones Familiares</strong></td>
+                                                <td>Plato fuerte + postre</td>
+                                                <td class="price">Desde $38.000 COP</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="caption" style="margin-top:15px;text-align:right;">*Precios de referencia, sujetos a personalización y detalle en cotización.</p>
+                                </div>
+                                <div class="card card-left-gradient" style="padding:30px;">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    <h3 class="card-title">Cronograma de Implementación</h3>
+                                    <p class="card-text">Estimamos un plazo de <strong>4 semanas</strong> para tener su nueva plataforma lista, antes de la temporada alta de matrimonios y fin de año.</p>
+                                    <p class="card-text" style="color:var(--text-lo);font-size:14px;margin-top:8px;">Este cronograma incluye diseño, desarrollo, carga inicial de contenido y pruebas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span class="label">Campuslands Full Service</span>
+                            <span class="label">Cotizacion Catering Sabor y Estilo</span>
+                            <span class="label" style="color:var(--blue);">05</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 7: Cierre y Proximos Pasos -->
+                <div class="slide" data-slide="7">
+                    <div class="slide-inner internal glow-b">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="wordmark">CATERING SABOR Y ESTILO</span>
+                        </div>
+                        <div class="s-body" style="display:flex;gap:40px;">
+                            <div style="flex:1;">
+                                <span class="eyebrow">06 · PRÓXIMOS PASOS</span>
+                                <h2 class="s-title">Juntos, hacia el <span class="gt">futuro</span> de tu negocio</h2>
+                                <p class="s-text" style="margin-bottom:30px;">Estamos listos para transformar la presencia digital de Catering Sabor y Estilo. Sigue estos sencillos pasos para empezar:</p>
+                                <div class="vertical-steps">
+                                    <div class="step-item">
+                                        <div class="step-number-circle">01</div>
+                                        <div class="step-content">
+                                            <h3>Revisa la Propuesta</h3>
+                                            <p>Analiza los detalles de la solución y el alcance propuesto.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-number-circle">02</div>
+                                        <div class="step-content">
+                                            <h3>Agenda una Consulta</h3>
+                                            <p>Aclaremos cualquier duda y personalicemos aún más tu proyecto.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-item">
+                                        <div class="step-number-circle">03</div>
+                                        <div class="step-content">
+                                            <h3>Inicio del Proyecto</h3>
+                                            <p>¡Pongamos en marcha la construcción de tu nueva plataforma!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="flex:0.8;">
+                                <div class="contact-card card-left-gradient">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    <h3 class="contact-title">Contacta con Nosotros</h3>
+                                    <p class="contact-subtitle">Estamos aquí para ayudarte a crecer.</p>
+                                    <p class="s-text" style="margin-top:15px;margin-bottom:0;font-weight:600;">Liliana Marcela Pabon Duran</p>
+                                    <p class="s-text" style="margin-top:0;font-size:15px;color:var(--text-lo);">Chef Ejecutiva y Propietaria</p>
+                                    <div class="contact-info">
+                                        <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 15.15 15.15 0 0 1-4.1 3.5c-1.8 1-3.6 1.49-5.4 1.49-1.8 0-3.6-.49-5.4-1.49-1.4-.76-2.67-1.78-4.1-3.5a15.15 15.15 0 0 1-4.1-3.5A8.38 8.38 0 0 1 3 11.5c0-1.2.35-2.28 1-3.23a9.92 9.92 0 0 1 2.22-2.19C7.45 4.6 8.9 3.5 11.5 3c2.6-.5 4.7-.6 6.5-.5 1.5 0 2.8.2 4 .5l-.5-.5z"/><path d="M14 5l3 3m-3-3l-3 3"/></svg>
+                                        <span>+57 315 662 0847</span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                        <span>liliana@saborestilocatering.co</span>
+                                    </div>
+                                    <a href="https://wa.me/573156620847" target="_blank" class="cta-button">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 15.15 15.15 0 0 1-4.1 3.5c-1.8 1-3.6 1.49-5.4 1.49-1.8 0-3.6-.49-5.4-1.49-1.4-.76-2.67-1.78-4.1-3.5a15.15 15.15 0 0 1-4.1-3.5A8.38 8.38 0 0 1 3 11.5c0-1.2.35-2.28 1-3.23a9.92 9.92 0 0 1 2.22-2.19C7.45 4.6 8.9 3.5 11.5 3c2.6-.5 4.7-.6 6.5-.5 1.5 0 2.8.2 4 .5l-.5-.5z"/><path d="M14 5l3 3m-3-3l-3 3"/></svg>
+                                        Envíanos un WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span class="label">Campuslands Full Service</span>
+                            <span class="label">Cotizacion Catering Sabor y Estilo</span>
+                            <span class="label" style="color:var(--blue);">06</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="s-footer">
-              <span>Campuslands Full Service</span>
-              <span>Cotizacion Optica Vision Clara</span>
-              <span class="page-number">07 / 07</span>
-            </div>
-          </div>
-        </div>
+        </section>
+    </main>
+    <footer class="slides-footer-controls">
+        <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+        <div class="slide-indicator"><span id="slide-number-display">1 / 7</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
+        <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </footer>
 
-      </div>
-    </section>
-  </main>
-
-  <footer class="slides-footer-controls">
-    <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior">
-      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    </button>
-    <div class="slide-indicator">
-      <span id="slide-number-display">1 / N</span>
-      <div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div>
-    </div>
-    <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente">
-      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </button>
-  </footer>
-
-  <script>
-    const state={currentSlide:1,totalSlides:7}; // N = 7 slides
-    function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
-    function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
-    function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
-    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
-    window.addEventListener('resize',resizeSlideStage);
-    window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();});
-    window.addEventListener('load',()=>{resizeSlideStage();});
-  </script>
+    <script>
+        const state={currentSlide:1,totalSlides:7};
+        function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
+        function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
+        function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
+        document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
+        window.addEventListener('resize',resizeSlideStage);
+        window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();});
+        window.addEventListener('load',()=>{resizeSlideStage();});
+    </script>
 <script>
 (function(){
 function clSeguridadTextoSuelto(){
